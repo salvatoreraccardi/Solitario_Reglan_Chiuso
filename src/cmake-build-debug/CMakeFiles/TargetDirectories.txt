@@ -1,3 +1,0 @@
-C:/Users/salva/CLionProjects/Solitario_Reglan_Chiuso/src/cmake-build-debug/CMakeFiles/src.dir
-C:/Users/salva/CLionProjects/Solitario_Reglan_Chiuso/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/salva/CLionProjects/Solitario_Reglan_Chiuso/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir

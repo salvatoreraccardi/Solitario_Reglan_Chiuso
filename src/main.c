@@ -3,6 +3,7 @@
 #include <windows.h>
 
 void textcolor(int colore);
+void gotoxy(short x, short y);
 void pokerCard(int valore, char seme, char colore);
 
 // K 13
@@ -12,7 +13,7 @@ int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
 char array_1_seme[6] = {'C', 'Q', 'C', 'Q', 'F', 'F'};
 char array_1_colore[6] = {'R', 'R', 'B', 'R', 'B', 'R'};
 
-void pokerCard(int valore, char seme, char colore){
+void pokerCard(int valore, char seme, char colore){   
     if(colore == 'R'){
         textcolor(12);
     }else{
@@ -52,7 +53,6 @@ void pokerCard(int valore, char seme, char colore){
     for(int index = 0; index <= 4; index++)
         printf("%c", 196);
     printf("%c\n", 217);
-
     
 }
 
@@ -64,7 +64,6 @@ int main() {
         //printf("ID: %i - VALORE: %i - SEME: %c - COLORE: %c\n", i, array_1_valore[i], array_1_seme[i], array_1_colore[i]);
         pokerCard(array_1_valore[i], array_1_seme[i], array_1_colore[i]); 
 
-    
     textcolor(15);
     getch(); 
     return 0;
@@ -72,4 +71,9 @@ int main() {
 
 void textcolor(int colore){
     SetConsoleTextAttribute (GetStdHandle (STD_OUTPUT_HANDLE), colore);
+}
+
+void gotoxy(short x, short y){
+ COORD pos ={x,y};
+ SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }

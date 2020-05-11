@@ -13,5 +13,10 @@ Le carte possono essere spostate dalle colonne secondo le regole seguenti: si pu
 
 Il gioco termina in caso di vittoria ovvero nel momento in cui le 4 basi conterranno le carte correttamente impilate oppure in caso di sconfitta ovvero nel momento in cui il giocatore non avrà più mosse consentite a sua disposizione.  
 
+## Contact
+
+- Salvatore Raccardi <salvatore.raccardi@community.unipa.it>
+- Antonino Graziano <antonino.graziano01@community.unipa.it>
+
 ## Link utili
 https://guides.lib.berkeley.edu/how-to-write-good-documentation

@@ -1,7 +1,9 @@
-# Solitario 
-Numero di giocatori:1 
+# Solitario Reglan Chiuso
 
-Tipologia carte: Carte Francesi (4 semi) 
+## Descrizione
+Numero di giocatori: 1 
+
+Tipologia carte: Carte Francesi (4 semi: ♠ - ♥ - ♦ - ♣) 
 
 Il gioco prevede che si distribuiscano 9 colonne di carte, l’ultima carta di ogni colonna sarà sempre scoperta. Le carte sono disposte nella colonna da destra verso sinistra in numero crescente (es: nella prima colonna avremo una carta, nella seconda due, ecc) fatta eccezione per le colonne 7,8 e 9 in cui il numero di carte è uguale per tutte ed è pari a 7; Avremo dunque un totale di 42 carte incolonnate. Le 10 carte restanti sono così sistemate: I 4 assi sono disposti in 4 rispettive caselle chiamate basi situate in alto a destra, le restanti 6 carte sono invece disposte in alto a sinistra in sei rispettivi spazi. 
 

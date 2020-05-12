@@ -115,6 +115,8 @@ void topCard(int nCard, int *cardValore){
 }
 
 int main() {
+    // console name
+    SetConsoleTitle("Solitario Reglan Chiuso");
     // clear screen
     system("cls");
     splashscreen();

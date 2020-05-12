@@ -2,67 +2,142 @@
 #include <conio.h>
 #include <windows.h>
 
+#include "startup.c"
+
 void textcolor(int colore);
 void gotoxy(short x, short y);
-void pokerCard(int valore, char seme, char colore);
+void delay(int number_of_seconds);
+void topCard(int nCard, int *cardValore);
 
 // K 13
 // Q 12
 // J 11
 int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
 char array_1_seme[6] = {'C', 'Q', 'C', 'Q', 'F', 'F'};
-char array_1_colore[6] = {'R', 'R', 'B', 'R', 'B', 'R'};
+char array_1_colore[6] = {'B', 'R', 'R', 'B', 'B', 'R'};
 
-void pokerCard(int valore, char seme, char colore){   
-    if(colore == 'R'){
-        textcolor(12);
-    }else{
-        textcolor(15);
+void topCard(int nCard, int *cardValore){
+    //int nCard = 6;
+    int index = 0;
+    int step1 = 0;
+    int step2 = 0;
+
+    // TopCard
+    for(index = 0; index < nCard; index++){   
+        if(array_1_colore[index] == 'R'){
+            textcolor(12);
+        }else{
+            textcolor(15);
+        }
+        gotoxy(step1, 0);  
+        printf("%c", 218);
+        for(int i = 0; i < 5; i++)
+            printf("%c", 196);
+        printf("%c", 191);       
+        step1 += 8;
     }
-    // Top card
-    printf("%c", 218);
-    for(int index = 0; index <= 4; index++)
-        printf("%c", 196);
-    printf("%c\n", 191);
-
-    // Da modificare - fatto con i piedi
-    if(valore == 13){
-        printf("%cK    %c\n", 179, 179);
-        printf("%c  %c  %c\n", 179, seme, 179);
-        printf("%c     %c\n", 179, 179);
-    }else if(valore == 12){
-        printf("%cQ    %c\n", 179, 179);
-        printf("%c  %c  %c\n", 179, seme, 179);
-        printf("%c     %c\n", 179, 179);
-    }else if(valore == 11){
-        printf("%cJ    %c\n", 179, 179);
-        printf("%c  %c  %c\n", 179, seme, 179);
-        printf("%c     %c\n", 179, 179);
-    }else if(valore == 10){
-        printf("%c%d   %c\n", 179, valore, 179);
-        printf("%c  %c  %c\n", 179, seme, 179);
-        printf("%c     %c\n", 179, 179);
-    }else{
-        printf("%c%d    %c\n", 179, valore, 179);
-        printf("%c  %c  %c\n", 179, seme, 179);
-        printf("%c     %c\n", 179, 179);
-    }  
-     
-    // bottom card
-    printf("%c", 192);
-    for(int index = 0; index <= 4; index++)
-        printf("%c", 196);
-    printf("%c\n", 217);
     
+    //MidCard - valore
+    step1 = 0;
+    step2 = 6;
+    for(int index = 0; index < nCard; index++){
+        if(array_1_colore[index] == 'R'){
+            textcolor(12);
+        }else{
+            textcolor(15);
+        }
+        gotoxy(step1, 1);
+        printf("%c %i", 179, *(cardValore + index));
+        
+        gotoxy(step2, 1);
+        printf("%c", 179);
+
+        step1 += 8;
+        step2 += 8;
+    }
+
+    //MidCard - empty
+    step1 = 0;
+    step2 = 6;
+    for(index = 0; index < nCard; index++){
+        if(array_1_colore[index] == 'R'){
+            textcolor(12);
+        }else{
+            textcolor(15);
+        }
+        gotoxy(step1, 2);
+        printf("%c", 179);
+
+        gotoxy(step2, 2);
+        printf("%c", 179);
+        step1 += 8;
+        step2 += 8;
+    }      
+
+    //MidCard - seme  
+    step1 = 0;
+    step2 = 6;
+    for(index = 0; index < nCard; index++){
+        if(array_1_colore[index] == 'R'){
+            textcolor(12);
+        }else{
+            textcolor(15);
+        }
+        gotoxy(step1, 3);  
+        printf("%c", 179);
+        gotoxy(step1 + 5, 3);
+        printf("%c", array_1_seme[index]);
+        gotoxy(step2, 3);  
+        printf("%c", 179);
+        step1 += 8;
+        step2 += 8;
+    }
+
+    //BottomCard - end
+    step1 = 0;
+    step2 = 6;
+    for(index = 0; index < nCard; index++){
+        if(array_1_colore[index] == 'R'){
+            textcolor(12);
+        }else{
+            textcolor(15);
+        }
+        gotoxy(step1, 4);
+        printf("%c", 192);
+        for(int j = 0; j < 5; j++)
+            printf("%c", 196);
+        gotoxy(step2, 4);    
+        printf("%c", 217);
+        step1 += 8;
+        step2 += 8;
+    }
+
 }
 
 int main() {
     // clear screen
     system("cls");
+    splashscreen();
 
-    for (int i = 0; i < 6; i++)
-        //printf("ID: %i - VALORE: %i - SEME: %c - COLORE: %c\n", i, array_1_valore[i], array_1_seme[i], array_1_colore[i]);
-        pokerCard(array_1_valore[i], array_1_seme[i], array_1_colore[i]); 
+    // vettore dinamico
+    int *cardValore, cardN = 6;
+    cardValore = (int*) calloc(cardN, sizeof(int));
+    // carico il vettore
+    for(int i = 0; i < cardN; i++)
+        *(cardValore + i) = i;
+
+    topCard(cardN, cardValore);
+
+    delay(4); 
+    system("cls");
+
+    cardN = 4;
+    // carico il vettore
+    for(int i = 0; i < cardN; i++)
+        *(cardValore + i) = array_1_valore[i];
+
+    topCard(cardN, cardValore);
+
 
     textcolor(15);
     getch(); 

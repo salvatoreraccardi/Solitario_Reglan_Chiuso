@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include "timeDelay.c"
-
 void splashscreen(){
     printf("Solitario Reglan Chiuso - v0.0.1\n");
     printf("Salvatore Raccardi: salvatore.raccardi@community.unipa.it\n");

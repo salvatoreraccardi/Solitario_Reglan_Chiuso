@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "delay.c"
+#include <windows.h>
+#include "timeDelay.c"
 
 void splashscreen(){
     printf("Solitario Reglan Chiuso - v0.0.1\n");

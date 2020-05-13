@@ -7,6 +7,7 @@
 #include "startup.c"
 #include "sector/sectorA.c"
 #include "sector/sectorB.c"
+#include "sector/sectorC.c"
 
 void textcolor(int colore);
 void gotoxy(short x, short y);
@@ -14,6 +15,7 @@ void delay(int number_of_seconds);
 void splashscreen();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 void sector_B();
+void sector_C();
 
 int main() {
     // console name
@@ -73,6 +75,7 @@ int main() {
     //
 
     sector_B();
+    sector_C();
 
     textcolor(15);
     getch(); 

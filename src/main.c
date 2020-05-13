@@ -6,19 +6,21 @@
 #include "services.c"
 #include "startup.c"
 #include "sector/sectorA.c"
+#include "sector/sectorB.c"
 
 void textcolor(int colore);
 void gotoxy(short x, short y);
 void delay(int number_of_seconds);
 void splashscreen();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
+void sector_B();
 
 int main() {
     // console name
     SetConsoleTitle("Solitario Reglan Chiuso");
     // clear screen
     system("cls");
-    splashscreen();
+    // splashscreen();
 
     //
     // START TEST 
@@ -47,7 +49,7 @@ int main() {
     }
 
     sector_A(cardN, cardValore, cardColore, cardSeme);
-
+/*
     delay(4); 
     system("cls");
 
@@ -65,10 +67,12 @@ int main() {
     free(cardValore);
     free(cardColore);
     free(cardSeme);
-
+*/
     //
     // END TEST
     //
+
+    sector_B();
 
     textcolor(15);
     getch(); 

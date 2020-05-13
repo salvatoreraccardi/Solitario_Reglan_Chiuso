@@ -11,7 +11,7 @@ void textcolor(int colore);
 void gotoxy(short x, short y);
 void delay(int number_of_seconds);
 void splashscreen();
-void sector_A(int nCard, int *cardValore);
+void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 
 int main() {
     // console name
@@ -20,26 +20,47 @@ int main() {
     system("cls");
     splashscreen();
 
-    // TEST - vettore dinamico
-    int *cardValore, cardN = 6;
-    cardValore = (int*) calloc(cardN, sizeof(int));
-    // carico il vettore
-    for(int i = 0; i < cardN; i++)
-        *(cardValore + i) = i;
+    // Vettori per la simulazione
+    int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
+    char array_1_seme[6] = {'C', 'Q', 'C', 'Q', 'F', 'F'};
+    char array_1_colore[6] = {'B', 'R', 'R', 'B', 'B', 'R'};
 
-    sector_A(cardN, cardValore);
+    // TEST - vettore dinamico
+    int *cardValore, cardN = 6, i;
+    char *cardColore, *cardSeme;
+    cardValore = (int*) calloc(cardN, sizeof(int));
+    cardColore = (char*) calloc(cardN, sizeof(char));
+    cardSeme = (char*) calloc(cardN, sizeof(char));
+    // carico il vettore
+    for(i = 0; i < cardN; i++){
+        *(cardValore + i) = i;
+        *(cardColore + i) = array_1_colore[i];
+        *(cardSeme + i) = array_1_seme[i];
+    }
+
+    sector_A(cardN, cardValore, cardColore, cardSeme);
 
     delay(4); 
     system("cls");
 
     cardN = 4;
     // carico il vettore
-    for(int i = 0; i < cardN; i++)
+    for(i = 0; i < cardN; i++){
         *(cardValore + i) = array_1_valore[i];
+        *(cardColore + i) = array_1_colore[i];
+        *(cardSeme + i) = array_1_seme[i];
+    }     
 
-    sector_A(cardN, cardValore);
+    sector_A(cardN, cardValore, cardColore, cardSeme);
+
+    // free memory
+    free(cardValore);
+    free(cardColore);
+    free(cardSeme);
+
 
     // END TEST
+
 
     textcolor(15);
     getch(); 

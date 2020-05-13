@@ -2,12 +2,7 @@
 // Q 12
 // J 11
 
-// Vettori per la simulazione
-int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
-char array_1_seme[6] = {'C', 'Q', 'C', 'Q', 'F', 'F'};
-char array_1_colore[6] = {'B', 'R', 'R', 'B', 'B', 'R'};
-
-void sector_A(int nCard, int *cardValore){
+void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
     int index = 0;
     // offset1/2 per gestire la visualizzazione delle carte
     int offset1 = 0;
@@ -16,7 +11,7 @@ void sector_A(int nCard, int *cardValore){
     // TopCard
     for(index = 0; index < nCard; index++){   
         // colore stampa
-        if(array_1_colore[index] == 'R'){
+        if(*(cardColore + index) == 'R'){
             textcolor(12);
         }else{
             textcolor(15);
@@ -40,14 +35,22 @@ void sector_A(int nCard, int *cardValore){
     offset2 = 6;
     for(int index = 0; index < nCard; index++){
         // colore stampa
-        if(array_1_colore[index] == 'R'){
+        if(*(cardColore + index) == 'R'){
             textcolor(12);
         }else{
             textcolor(15);
         }
         gotoxy(offset1, 1);
         // print valore carta - (1...K)
-        printf("%c %i", 179, *(cardValore + index));
+        if(*(cardValore + index) <= 10){
+            printf("%c %i", 179, *(cardValore + index));
+        }else if(*(cardValore + index) == 11){
+            printf("%c J", 179);
+        }else if(*(cardValore + index) == 12){    
+            printf("%c Q", 179);
+        }else if(*(cardValore + index) == 13){
+            printf("%c K", 179);
+        }    
         
         gotoxy(offset2, 1);
         printf("%c", 179);
@@ -63,7 +66,7 @@ void sector_A(int nCard, int *cardValore){
     offset2 = 6;
     for(index = 0; index < nCard; index++){
         // colore stampa
-        if(array_1_colore[index] == 'R'){
+        if(*(cardColore + index) == 'R'){
             textcolor(12);
         }else{
             textcolor(15);
@@ -84,7 +87,7 @@ void sector_A(int nCard, int *cardValore){
     offset2 = 6;
     for(index = 0; index < nCard; index++){
         // colore stampa
-        if(array_1_colore[index] == 'R'){
+        if(*(cardColore + index) == 'R'){
             textcolor(12);
         }else{
             textcolor(15);
@@ -93,7 +96,7 @@ void sector_A(int nCard, int *cardValore){
         printf("%c", 179);
         gotoxy(offset1 + 5, 3);
         // Print del seme
-        printf("%c", array_1_seme[index]);
+        printf("%c", *(cardSeme + index));
         gotoxy(offset2, 3);  
         printf("%c", 179);
         
@@ -108,7 +111,7 @@ void sector_A(int nCard, int *cardValore){
     offset2 = 6;
     for(index = 0; index < nCard; index++){
         // colore stampa
-        if(array_1_colore[index] == 'R'){
+        if(*(cardColore + index) == 'R'){
             textcolor(12);
         }else{
             textcolor(15);

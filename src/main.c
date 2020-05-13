@@ -20,17 +20,25 @@ int main() {
     system("cls");
     splashscreen();
 
+    //
+    // START TEST 
+    //
+
     // Vettori per la simulazione
     int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
     char array_1_seme[6] = {'C', 'Q', 'C', 'Q', 'F', 'F'};
     char array_1_colore[6] = {'B', 'R', 'R', 'B', 'B', 'R'};
-
-    // TEST - vettore dinamico
-    int *cardValore, cardN = 6, i;
-    char *cardColore, *cardSeme;
+    
+    int cardN = 6, i;
+    // Vettore dinamico
+    int *cardValore = NULL;
+    char *cardColore = NULL;
+    char *cardSeme = NULL;
+    // puntatori - allocazione memoria
     cardValore = (int*) calloc(cardN, sizeof(int));
     cardColore = (char*) calloc(cardN, sizeof(char));
     cardSeme = (char*) calloc(cardN, sizeof(char));
+
     // carico il vettore
     for(i = 0; i < cardN; i++){
         *(cardValore + i) = i;
@@ -58,9 +66,9 @@ int main() {
     free(cardColore);
     free(cardSeme);
 
-
+    //
     // END TEST
-
+    //
 
     textcolor(15);
     getch(); 

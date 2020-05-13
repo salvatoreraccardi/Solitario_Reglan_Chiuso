@@ -1,7 +1,3 @@
-#include <stdio.h>
-// For keyboard input
-#include <conio.h>
-
 // Playground 
 int playground() {
     printf("playground");

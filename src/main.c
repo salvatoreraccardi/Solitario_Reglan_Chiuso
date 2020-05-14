@@ -15,7 +15,7 @@ void delay(int number_of_seconds);
 void splashscreen();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 void sector_B();
-void sector_C();
+void sector_C(int nDorsi, int nCard, int offsetX);
 
 int main() {
     // console name
@@ -43,13 +43,14 @@ int main() {
     cardColore = (char*) calloc(cardN, sizeof(char));
     cardSeme = (char*) calloc(cardN, sizeof(char));
 
-    // carico il vettore
+    // puntatori <--data-- vettori
     for(i = 0; i < cardN; i++){
         *(cardValore + i) = i;
         *(cardColore + i) = array_1_colore[i];
         *(cardSeme + i) = array_1_seme[i];
     }
 
+    // generazione delle carte
     sector_A(cardN, cardValore, cardColore, cardSeme);
 /*
     delay(4); 
@@ -64,18 +65,30 @@ int main() {
     }     
 
     sector_A(cardN, cardValore, cardColore, cardSeme);
-
+*/
     // free memory
     free(cardValore);
     free(cardColore);
     free(cardSeme);
-*/
+
     //
     // END TEST
     //
 
     sector_B();
-    sector_C();
+
+    // simulazione sectorC
+    int numeroDorsi = 3;
+    int numeroCard = 4;
+    sector_C(numeroDorsi, numeroCard, 0);
+    sector_C(5, 2, 8);
+    sector_C(6, 3, 16);
+    sector_C(numeroDorsi, numeroCard, 24);
+    sector_C(numeroDorsi, numeroCard, 32);
+    sector_C(numeroDorsi, numeroCard, 40);
+    sector_C(numeroDorsi, numeroCard, 48);
+    sector_C(numeroDorsi, numeroCard, 56);
+    sector_C(numeroDorsi, numeroCard, 64);
 
     textcolor(15);
     getch(); 

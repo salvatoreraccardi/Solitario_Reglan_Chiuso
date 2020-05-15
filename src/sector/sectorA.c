@@ -1,7 +1,3 @@
-// K 13
-// Q 12
-// J 11
-
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
     int index = 0;
     // offset1/2 per gestire la visualizzazione delle carte
@@ -64,23 +60,27 @@ void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
     //MidCard - empty
     offset1 = 0;
     offset2 = 6;
-    for(index = 0; index < nCard; index++){
-        // colore stampa
-        if(*(cardColore + index) == 'R'){
-            textcolor(12);
-        }else{
-            textcolor(15);
-        }
-        gotoxy(offset1, 2);
-        printf("%c", 179);
+    for(int i = 0; i < 2; i++){
+        for(index = 0; index < nCard; index++){
+            // colore stampa
+            if(*(cardColore + index) == 'R'){
+                textcolor(12);
+            }else{
+                textcolor(15);
+            }
+            gotoxy(offset1, 2 + i);
+            printf("%c", 179);
 
-        gotoxy(offset2, 2);
-        printf("%c", 179);
-        // traslazione di 8pixel per il print successivo 
-        offset1 += 8;
-        offset2 += 8;
-        // OUTPUT_3: │     │
-    }      
+            gotoxy(offset2, 2 + i);
+            printf("%c", 179);
+            // traslazione di 8pixel per il print successivo 
+            offset1 += 8;
+            offset2 += 8;
+            // OUTPUT_3: │     │
+        }  
+        offset1 = 0;
+        offset2 = 6;    
+    }
 
     //MidCard - seme  
     offset1 = 0;
@@ -92,12 +92,12 @@ void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
         }else{
             textcolor(15);
         }
-        gotoxy(offset1, 3);  
+        gotoxy(offset1, 4);  
         printf("%c", 179);
-        gotoxy(offset1 + 5, 3);
+        gotoxy(offset1 + 5, 4);
         // Print del seme
         printf("%c", *(cardSeme + index));
-        gotoxy(offset2, 3);  
+        gotoxy(offset2, 4);  
         printf("%c", 179);
         
         // traslazione di 8pixel per il print successivo 
@@ -116,11 +116,11 @@ void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
         }else{
             textcolor(15);
         }
-        gotoxy(offset1, 4);
+        gotoxy(offset1, 5);
         printf("%c", 192);
         for(int j = 0; j < 5; j++)
             printf("%c", 196);
-        gotoxy(offset2, 4);    
+        gotoxy(offset2, 5);    
         printf("%c", 217);
         // traslazione di 8pixel per il print successivo 
         offset1 += 8;

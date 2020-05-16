@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h> 
+#include <time.h> 
 #include <stdbool.h>
 #include <conio.h>
 #include <windows.h>
@@ -6,6 +8,7 @@
 
 #include "services.c"
 #include "startup.c"
+#include "deck.c"
 #include "sector/sectorA.c"
 #include "sector/sectorB.c"
 #include "sector/sectorC.c"
@@ -14,6 +17,7 @@ void textcolor(int colore);
 void gotoxy(short x, short y);
 void delay(int number_of_seconds);
 void splashscreen();
+void deckGeneration();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 void sector_B();
 void sector_C(int nCard, int indexL, int *matrixDorso, int *matrixValore, char *matrixSeme, char *matrixColore, int offsetX);
@@ -25,10 +29,12 @@ int main() {
     system("cls");
     // splashscreen();
 
+    deckGeneration();
+
     //
     // START TEST 
     //
-
+    /*
     // Vettori per la simulazione
     int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
     char array_1_seme[6] = {3, 4, 3, 4, 5, 5};
@@ -52,7 +58,7 @@ int main() {
     }
 
     // generazione delle carte
-    sector_A(cardN, cardValore, cardColore, cardSeme);
+    sector_A(cardN, cardValore, cardColore, cardSeme);*/
 /*
     delay(4); 
     system("cls");
@@ -68,15 +74,15 @@ int main() {
     sector_A(cardN, cardValore, cardColore, cardSeme);
 */
     // free memory
-    free(cardValore);
-    free(cardColore);
-    free(cardSeme);
+    //free(cardValore);
+    //free(cardColore);
+    //free(cardSeme);
 
     //
     // END TEST
     //
 
-    sector_B();
+    //sector_B();
 
    
     //int nCard = 3;
@@ -86,6 +92,7 @@ int main() {
     // int arr_valore[3] = {3, 10, 4};
     // char arr_seme[3] = {3, 4, 5};
     // char arr_colore[3] = {'R', 'B', 'B'};
+    /*
     int arr_dorso[2][2] = {{0, 0},
                            {1, 0}};
 
@@ -130,7 +137,7 @@ int main() {
         indexC += 1;
         offsetX += 8;
     }       
-
+    */
     /*
     int *cDorso = NULL;
     int *cValore = NULL;

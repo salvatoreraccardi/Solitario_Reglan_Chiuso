@@ -3,20 +3,10 @@
 int deckValore[52];
 char deckSeme[52];
 char deckColore[52];
-
 char semi[4] = {3,5,4,6};
 
-int printRandoms(int lower, int upper){ 
-    int num = (rand() % 
-            (upper - lower + 1)) + lower; 
-    return num; 
-} 
-  
-
 void deckGeneration(){
-
     // Generazione del deck
-
     // Assi
     for(int y = 0; y < 4; y++){
         deckValore[y] = 1;
@@ -27,8 +17,7 @@ void deckGeneration(){
             deckColore[y] = 'B';
         }
     }
-
-    // tutte le carte
+    // tutte le carte - 48
     int index = 2;
     int offset = 0;
 
@@ -46,28 +35,29 @@ void deckGeneration(){
         index = 2;
         offset += 12;
     }   
-
-    // DEBUG: PRINT DATASET    
+    // DEBUG: PRINT DATASET   
+    /* 
     for(int k = 0; k < 52; k++){
         printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deckValore[k], deckSeme[k], deckColore[k]);
     }
+    */
 
+    //printf("\n\n\nShuffling cards \n\n\n");
 
-    printf("\n\n\nShuffling cards \n\n\n");
     // Shuffling cards
-    
-    srand(time(0)); // seed for random index
+    // seed for random index
+    srand(time(0)); 
 
     for(int swap = 0; swap < 10; swap++){
         int rnd1 = 0;
         int rnd2 = 0;
         // Random index
         while(rnd1 == rnd2 && deckValore[rnd1] == deckValore[rnd2]){
-            rnd1 = printRandoms(4, 51);
-            rnd2 = printRandoms(4, 51);
+            rnd1 = random(4, 51);
+            rnd2 = random(4, 51);
         }
         
-        printf("RND1: %i \t RND2: %i\n", rnd1, rnd2);    
+        // printf("RND1: %i \t RND2: %i\n", rnd1, rnd2);    
 
         // Swap Valore
         int tempValore = deckValore[rnd1];
@@ -85,8 +75,16 @@ void deckGeneration(){
         deckColore[rnd2] = tempColore;
     }
 
-    // DEBUG: PRINT DATASET    
+    // DEBUG: PRINT DATASET   
+    /* 
     for(int k = 0; k < 52; k++){
         printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deckValore[k], deckSeme[k], deckColore[k]);
     }
+    */
 }
+
+int random(int lower, int upper){ 
+    int num = (rand() % 
+            (upper - lower + 1)) + lower; 
+    return num; 
+} 

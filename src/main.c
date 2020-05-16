@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> 
+#include <string.h>
 #include <time.h> 
 #include <stdbool.h>
 #include <conio.h>
@@ -20,12 +21,12 @@ void splashscreen();
 void deckGeneration();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 void sector_B();
-void sector_C(int nCard, int indexL, int *matrixDorso, int *matrixValore, char *matrixSeme, char *matrixColore, int offsetX);
+void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, int offsetX);
+
 
 int main() {
     // console name
     SetConsoleTitle("Solitario Reglan Chiuso");
-    // clear screen
     system("cls");
     // splashscreen();
 
@@ -33,12 +34,7 @@ int main() {
 
     //
     // START TEST 
-    //
-    /*
-    // Vettori per la simulazione
-    int array_1_valore[6] = {13, 12, 4, 10, 11, 5};
-    char array_1_seme[6] = {3, 4, 3, 4, 5, 5};
-    char array_1_colore[6] = {'B', 'R', 'R', 'B', 'B', 'R'};
+    //  
     
     int cardN = 6, i;
     // Vettore dinamico
@@ -52,93 +48,29 @@ int main() {
 
     // puntatori <--data-- vettori
     for(i = 0; i < cardN; i++){
-        *(cardValore + i) = i;
-        *(cardColore + i) = array_1_colore[i];
-        *(cardSeme + i) = array_1_seme[i];
+        *(cardValore + i) = deckValore[45 + i];
+        *(cardColore + i) = deckColore[45 + i];
+        *(cardSeme + i) = deckSeme[45 + i];
     }
 
     // generazione delle carte
-    sector_A(cardN, cardValore, cardColore, cardSeme);*/
-/*
-    delay(4); 
-    system("cls");
-
-    cardN = 4;
-    // carico il vettore
-    for(i = 0; i < cardN; i++){
-        *(cardValore + i) = array_1_valore[i];
-        *(cardColore + i) = array_1_colore[i];
-        *(cardSeme + i) = array_1_seme[i];
-    }     
-
     sector_A(cardN, cardValore, cardColore, cardSeme);
-*/
-    // free memory
-    //free(cardValore);
-    //free(cardColore);
-    //free(cardSeme);
+    free(cardValore);
+    free(cardColore);
+    free(cardSeme);
 
     //
     // END TEST
     //
 
-    //sector_B();
+    sector_B();
 
    
-    //int nCard = 3;
-    //int offsetX = 0;
-    // array_dataset
-    // int arr_dorso[3] = {0, 0, 0};
-    // int arr_valore[3] = {3, 10, 4};
-    // char arr_seme[3] = {3, 4, 5};
-    // char arr_colore[3] = {'R', 'B', 'B'};
-    /*
-    int arr_dorso[2][2] = {{0, 0},
-                           {1, 0}};
-
-    int arr_valore[2][2] = {{10, 7},
-                            {3, 5}};
-
-    char arr_seme[2][2] = {{3, 5},
-                           {4, 6}};
-
-    char arr_colore[2][2] = {{'R', 'R'},
-                             {'R', 'B'}};
-
-    // crea matrice
-    int *matrixDorso = NULL;
-    int *matrixValore = NULL;
-    char *matrixSeme = NULL;
-    char *matrixColore = NULL;
-
-    int nCard = 2;
-    int indexC = 0;
+    int nCard = 6;
     int offsetX = 0;
-    int lines = nCard;
-    int columns = nCard;
-
-    matrixDorso = (int *)malloc(lines * columns * sizeof(int)); 
-    matrixValore = (int *)malloc(lines * columns * sizeof(int));
-    matrixSeme = (char *)malloc(lines * columns * sizeof(char));  
-    matrixColore = (char *)malloc(lines * columns * sizeof(char));  
-
-
-    for (int i = 0; i < lines; ++i){
-      for (int j = 0; j < columns; ++j){
-        matrixDorso[i*lines + j] = arr_dorso[i][j];
-        matrixValore[i*lines + j] = arr_valore[i][j];
-        matrixSeme[i*lines + j] = arr_seme[i][j];
-        matrixColore[i*lines + j] = arr_colore[i][j];
-      }
-    }
-
-    for(int load = 0; load < nCard; load++){
-        sector_C(nCard, indexC, matrixDorso, matrixValore, matrixSeme, matrixColore, offsetX);
-        indexC += 1;
-        offsetX += 8;
-    }       
-    */
-    /*
+    // array_dataset
+    int arr_dorso[6] = {1, 1, 0, 0, 0, 0};
+    
     int *cDorso = NULL;
     int *cValore = NULL;
     char *cSeme = NULL;
@@ -153,14 +85,14 @@ int main() {
     // puntatori <--data-- vettori
     for(i = 0; i < nCard; i++){
         *(cDorso + i) = arr_dorso[i];
-        *(cValore + i) = arr_valore[i];
-        *(cSeme + i) = arr_seme[i];
-        *(cColore + i) = arr_colore[i];
+        *(cValore + i) = deckValore[4 + i];
+        *(cSeme + i) = deckSeme[4 + i];
+        *(cColore + i) = deckColore[4 + i];
     }
 
     // int nCard, bool array_dorso[3], int array_valore[3], char array_seme[3], char array_colore[3], int offsetX
     sector_C(nCard, cDorso, cValore, cSeme, cColore, offsetX);
-    */
+    
     //sector_C(5, 2, 8);
     //sector_C(6, 3, 16);
     //sector_C(numeroDorsi, numeroCard, 24);

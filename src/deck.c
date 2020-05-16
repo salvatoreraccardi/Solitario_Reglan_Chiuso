@@ -1,9 +1,18 @@
 // Carte rosse: 13x♥ - 13x♦
 // Carte nere: 13x♣ - 13x♠ 
+
+// Deck - dataset
 int deckValore[52];
 char deckSeme[52];
 char deckColore[52];
+
 char semi[4] = {3,5,4,6};
+
+int random(int lower, int upper){ 
+    int num = (rand() % 
+            (upper - lower + 1)) + lower; 
+    return num; 
+} 
 
 void deckGeneration(){
     // Generazione del deck
@@ -35,20 +44,12 @@ void deckGeneration(){
         index = 2;
         offset += 12;
     }   
-    // DEBUG: PRINT DATASET   
-    /* 
-    for(int k = 0; k < 52; k++){
-        printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deckValore[k], deckSeme[k], deckColore[k]);
-    }
-    */
-
-    //printf("\n\n\nShuffling cards \n\n\n");
 
     // Shuffling cards
     // seed for random index
     srand(time(0)); 
 
-    for(int swap = 0; swap < 10; swap++){
+    for(int swap = 0; swap < 300; swap++){
         int rnd1 = 0;
         int rnd2 = 0;
         // Random index
@@ -76,15 +77,9 @@ void deckGeneration(){
     }
 
     // DEBUG: PRINT DATASET   
-    /* 
+    /*
     for(int k = 0; k < 52; k++){
         printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deckValore[k], deckSeme[k], deckColore[k]);
     }
-    */
+    */    
 }
-
-int random(int lower, int upper){ 
-    int num = (rand() % 
-            (upper - lower + 1)) + lower; 
-    return num; 
-} 

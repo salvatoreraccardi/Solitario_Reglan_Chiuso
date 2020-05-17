@@ -37,7 +37,7 @@ void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme){
             textcolor(15);
         }
         gotoxy(offset1, 1);
-        // print valore carta - (1...K)
+        // print valore carta - (2...K)
         if(*(cardValore + index) <= 10){
             printf("%c %i", 179, *(cardValore + index));
         }else if(*(cardValore + index) == 11){

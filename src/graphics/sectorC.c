@@ -25,13 +25,14 @@ void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, 
                 printf("%c", 179);  
                 offset1 += 2;
             }else if(*(cDorso + index) == 0){
+
                 // rendering carta
                 if(*(cColore + index) == 'R'){
                     textcolor(12);
                 }else{
                     textcolor(15);
                 }
-                // TODO: SELEZIONE COLORE
+                
                 gotoxy(offsetX, offset1);
                 printf("%c", 218);
                     for(int i = 0; i < 5; i++)
@@ -46,7 +47,16 @@ void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, 
                 printf("%c", 179);     
                 gotoxy(offsetX + (offset2 += 1), offset1 - 1);
                 // valore 
-                printf("%i", *(cValore + index));
+                // print valore carta - (2...K)
+                if(*(cValore + index) <= 10){
+                    printf("%i",*(cValore + index));
+                }else if(*(cValore + index) == 11){
+                    printf("J");
+                }else if(*(cValore + index) == 12){    
+                    printf("Q");
+                }else if(*(cValore + index) == 13){
+                    printf("K");
+                }
                 gotoxy(offsetX + (offset2 += 4), offset1 - 1);
                 // seme
                 printf("%c", *(cSeme + index));
@@ -76,7 +86,16 @@ void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, 
         offset1 += 1;
         offset2 = 6;
         gotoxy(offsetX, offset1);
-        printf("%c %i", 179, *(cValore + index));
+        // print valore carta - (2...K)
+        if(*(cValore + index) <= 10){
+            printf("%c %i", 179, *(cValore + index));
+        }else if(*(cValore + index) == 11){
+            printf("%c J", 179);
+        }else if(*(cValore + index) == 12){    
+            printf("%c Q", 179);
+        }else if(*(cValore + index) == 13){
+            printf("%c K", 179);
+        }
         gotoxy(offsetX + offset2, offset1);
         printf("%c", 179);
         // OUTPUT_2: │ 10   │

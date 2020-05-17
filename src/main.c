@@ -10,9 +10,9 @@
 #include "services.c"
 #include "startup.c"
 #include "deck.c"
-#include "sector/sectorA.c"
-#include "sector/sectorB.c"
-#include "sector/sectorC.c"
+#include "graphics/sectorA.c"
+#include "graphics/sectorB.c"
+#include "graphics/sectorC.c"
 
 void textcolor(int colore);
 void gotoxy(short x, short y);
@@ -20,7 +20,7 @@ void delay(int number_of_seconds);
 void splashscreen();
 void deckGeneration();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
-void sector_B();
+void sector_B(int *cardValore, char *cardColore, char *cardSeme);
 void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, int offsetX);
 
 
@@ -55,15 +55,22 @@ int main() {
 
     // generazione delle carte
     sector_A(cardN, cardValore, cardColore, cardSeme);
-    free(cardValore);
-    free(cardColore);
-    free(cardSeme);
+    //free(cardValore);
+    //free(cardColore);
+    //free(cardSeme);
 
     //
     // END TEST
     //
 
-    sector_B();
+    // puntatori <--data-- vettori
+    for(i = 0; i < cardN; i++){
+        *(cardValore + i) = deckValore[i];
+        *(cardColore + i) = deckColore[i];
+        *(cardSeme + i) = deckSeme[i];
+    }
+
+    sector_B(cardValore, cardColore, cardSeme);
 
    
     int nCard = 6;

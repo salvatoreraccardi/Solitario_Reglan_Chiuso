@@ -64,7 +64,7 @@ void sector_B(int *cardValore, char *cardColore, char *cardSeme){
     //MidCard - empty
     offset1 = 85;
     offset2 = 91;
-    for(int i = 0; i < 2; i++){
+    for(i = 0; i < 2; i++){
         for(index = 0; index < 4; index++){
             // colore stampa
             if(*(cardColore + index) == 'R'){

@@ -1,81 +1,62 @@
 // Carte rosse: 13x♥ - 13x♦
 // Carte nere: 13x♣ - 13x♠ 
-
-// Deck - dataset
-int deckValore[52];
-char deckSeme[52];
-char deckColore[52];
-
-char semi[4] = {3,5,4,6};
-
-int random(int lower, int upper){ 
-    int num = (rand() % 
-            (upper - lower + 1)) + lower; 
-    return num; 
-} 
-
 void deckGeneration(){
-    // Generazione del deck
+    // Generazione del deck   
+    int y, i, j, swap;
+    int index = 2, offset = 0;
+    int rnd1, rnd2;
+    int tempValore; 
+    char tempSeme, tempColore;
+    char semi[4] = {3,5,4,6};
     // Assi
-    for(int y = 0; y < 4; y++){
-        deckValore[y] = 1;
-        deckSeme[y] = semi[y];
+    for(y = 0; y < 4; y++){
+        deck.valore[y] = 1;
+        deck.seme[y] = semi[y];
         if(y == 0 || y == 2){
-            deckColore[y] = 'R';
+            deck.colore[y] = 'R';
         }else{
-            deckColore[y] = 'B';
+            deck.colore[y] = 'B';
         }
     }
-    // tutte le carte - 48
-    int index = 2;
-    int offset = 0;
-
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 12; j++){
-            deckValore[4 + j + offset] = index;
-            deckSeme[4 + j + offset] = semi[i];
+    // tutte le carte = 48
+    for(i = 0; i < 4; i++){
+        for(j = 0; j < 12; j++){
+            deck.valore[4 + j + offset] = index;
+            deck.seme[4 + j + offset] = semi[i];
             if(i == 0 || i == 2){
-                deckColore[4 + j + offset] = 'R';
+                deck.colore[4 + j + offset] = 'R';
             }else{
-                deckColore[4 + j + offset] = 'B';
+                deck.colore[4 + j + offset] = 'B';
             }
             index++;
         }
         index = 2;
         offset += 12;
     }   
-
-    // Shuffling cards
     // seed for random index
     srand(time(0)); 
-
-    for(int swap = 0; swap < 300; swap++){
-        int rnd1 = 0;
-        int rnd2 = 0;
+    // Shuffling cards
+    for(swap = 0; swap < 300; swap++){
+        rnd1 = 0;
+        rnd2 = 0;
         // Random index
-        while(rnd1 == rnd2 && deckValore[rnd1] == deckValore[rnd2]){
+        while(rnd1 == rnd2 && deck.valore[rnd1] == deck.valore[rnd2]){
             rnd1 = random(4, 51);
             rnd2 = random(4, 51);
         }
-        
-        // printf("RND1: %i \t RND2: %i\n", rnd1, rnd2);    
-
         // Swap Valore
-        int tempValore = deckValore[rnd1];
-        deckValore[rnd1] = deckValore[rnd2];
-        deckValore[rnd2] = tempValore;
-
+        tempValore = deck.valore[rnd1];
+        deck.valore[rnd1] = deck.valore[rnd2];
+        deck.valore[rnd2] = tempValore;
         // Swap Seme
-        char tempSeme = deckSeme[rnd1];
-        deckSeme[rnd1] = deckSeme[rnd2];
-        deckSeme[rnd2] = tempSeme;
-
+        tempSeme = deck.seme[rnd1];
+        deck.seme[rnd1] = deck.seme[rnd2];
+        deck.seme[rnd2] = tempSeme;
         // Swap Seme
-        char tempColore = deckColore[rnd1];
-        deckColore[rnd1] = deckColore[rnd2];
-        deckColore[rnd2] = tempColore;
+        tempColore = deck.colore[rnd1];
+        deck.colore[rnd1] = deck.colore[rnd2];
+        deck.colore[rnd2] = tempColore;
     }
-
     // DEBUG: PRINT DATASET   
     /*
     for(int k = 0; k < 52; k++){

@@ -1,3 +1,13 @@
+//
+// Solitario Reglan Chiuso(v0.0.1)
+// MIT LICENSE Copyright (c) 2020 Salvatore Raccardi
+//
+// Salvatore Raccardi salvatore.raccardi@community.unipa.it
+// Antonino Graziano antonino.graziano01@community.unipa.it
+//
+// Repo: github.com/salvatoreraccardi/Solitario_Reglan_Chiuso
+//
+
 #include <stdio.h>
 #include <stdlib.h> 
 #include <string.h>
@@ -6,6 +16,13 @@
 #include <conio.h>
 #include <windows.h>
 #include <time.h> 
+
+// Deck - dataset
+struct deck_data{
+    int valore[52];
+    char seme[52];
+    char colore[52];
+}deck;
 
 #include "tools.c"
 #include "startup.c"
@@ -16,13 +33,12 @@
 
 void textcolor(int colore);
 void gotoxy(short x, short y);
-void delay(int number_of_seconds);
+void delay(int seconds);
 void splashscreen();
 void deckGeneration();
 void sector_A(int nCard, int *cardValore, char *cardColore, char *cardSeme);
 void sector_B(int *cardValore, char *cardColore, char *cardSeme);
 void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, int offsetX);
-
 
 int main() {
     // console name
@@ -48,11 +64,12 @@ int main() {
 
     // puntatori <--data-- vettori
     for(i = 0; i < cardN; i++){
-        *(cardValore + i) = deckValore[46 + i];
-        *(cardColore + i) = deckColore[46 + i];
-        *(cardSeme + i) = deckSeme[46 + i];
+        *(cardValore + i) = deck.valore[46 + i];
+        *(cardColore + i) = deck.colore[46 + i];
+        *(cardSeme + i) = deck.seme[46 + i];
     }
 
+    
     // generazione delle carte
     sector_A(cardN, cardValore, cardColore, cardSeme);
     //free(cardValore);
@@ -64,10 +81,10 @@ int main() {
     //
 
     // puntatori <--data-- vettori
-    for(i = 0; i < cardN; i++){
-        *(cardValore + i) = deckValore[i];
-        *(cardColore + i) = deckColore[i];
-        *(cardSeme + i) = deckSeme[i];
+    for(i = 0; i < 4; i++){
+        *(cardValore + i) = deck.valore[i];
+        *(cardColore + i) = deck.colore[i];
+        *(cardSeme + i) = deck.seme[i];
     }
 
     sector_B(cardValore, cardColore, cardSeme);
@@ -96,9 +113,9 @@ int main() {
         // puntatori <--data-- vettori
         for(int i = 0; i < getCard[j]; i++){
             *(cDorso + i) = arr_dorso[i];
-            *(cValore + i) = deckValore[offsetData + i];
-            *(cSeme + i) = deckSeme[offsetData + i];
-            *(cColore + i) = deckColore[offsetData + i];
+            *(cValore + i) = deck.valore[offsetData + i];
+            *(cSeme + i) = deck.seme[offsetData + i];
+            *(cColore + i) = deck.colore[offsetData + i];
         }
 
         // int nCard, bool array_dorso[3], int array_valore[3], char array_seme[3], char array_colore[3], int offsetX

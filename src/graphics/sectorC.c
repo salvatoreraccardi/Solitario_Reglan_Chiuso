@@ -1,5 +1,4 @@
 void sector_C(int nCard, int *cDorso, int *cValore, char *cSeme, char *cColore, int offsetX){
-    
     int index = 0;
     int offset1 = 10;
     int offset2 = 0; // Solo per il rendering delle carte che si vedono

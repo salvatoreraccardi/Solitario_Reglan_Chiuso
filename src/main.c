@@ -54,7 +54,7 @@ int main() {
     // REALTIME UPDATE
     // INSIDE GAME
     //
-    
+    int j;
 
     while(1){
         textcolor(15); 
@@ -65,9 +65,25 @@ int main() {
         scanf("%c %c %c %i %i", &c_1, &c_2, &c_3, &from, &to);
 
         // CHECK - comando
-        if(c_1 == 'A' && c_2 == '>' && c_3 == 'B'){
-            // TODO: CHECK FROM_VALUE && TO_VALUE
+        if(c_1 == 'A' && c_2 == '>' && c_3 == 'B' && ptrA->nCard > 0){
+            // Swap data
+            (ptrB+to)->valore = (ptrA+from)->valore;
+            // Sort sector_A
+            for(j = from; j < ptrA->nCard; j++){
+                (ptrA+j)->valore = (ptrA+(j+1))->valore;
+                (ptrA+j)->seme = (ptrA+(j+1))->seme;
+                (ptrA+j)->colore = (ptrA+(j+1))->colore;
+            }
+            ptrA->nCard -= 1;
+            // Refresh screen
+            system("cls");
+            sector_A();
+            sector_B();
+            sector_C();
+        }else{
+            printf("ERR!");
         } 
+        
     }
 
     //TODO: FREE ALL POINTERS

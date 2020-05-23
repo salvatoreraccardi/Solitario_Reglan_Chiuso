@@ -63,9 +63,9 @@ int main() {
         char c_1, c_2, c_3;
         int from, to;
         scanf("%c %c %c %i %i", &c_1, &c_2, &c_3, &from, &to);
-
         // CHECK - comando
         if(c_1 == 'A' && c_2 == '>' && c_3 == 'B' && ptrA->nCard > 0){
+            (ptrC[1]+6)->valore = 5;
             // Swap data
             (ptrB+to)->valore = (ptrA+from)->valore;
             // Sort sector_A
@@ -81,8 +81,8 @@ int main() {
             sector_B();
             sector_C();
         }else{
-            printf("ERR!");
-        } 
+            printf("ERR");
+        }
         
     }
 

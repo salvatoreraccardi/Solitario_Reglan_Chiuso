@@ -1,6 +1,5 @@
 //
 // Solitario Reglan Chiuso(v0.0.1)
-// MIT LICENSE Copyright (c) 2020 Salvatore Raccardi
 //
 // Salvatore Raccardi salvatore.raccardi@community.unipa.it
 // Antonino Graziano antonino.graziano01@community.unipa.it
@@ -167,10 +166,12 @@ int main() {
             }else{
                 printf("\n error\n");
             }
+        }else if(c_1 == 'C' && c_2 == '>' && c_3 == 'B'){
+
         }   
     }
 
-    //TODO: FREE ALL POINTER
+    //TODO: FREE ALL POINTERS
     //free(sectorA_Valore);
     //free(sectorA_Colore);
     //free(sectorA_Seme);

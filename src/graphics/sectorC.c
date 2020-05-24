@@ -7,7 +7,7 @@ void sector_C(){
 
     textcolor(15);
     for(j = 0; j < 9; j++){
-        if((ptrC[j])->renderingCard > 0){
+        if((ptrC[j])->renderingCard >= 0){
             for(index = 0; index < ((ptrC[j]+index)->renderingCard - 1); index++){
                 // rendering dorso
                 if((ptrC[j]+index)->dorsi == 1){
@@ -90,13 +90,13 @@ void sector_C(){
             gotoxy(offsetX, offset1);
             // print valore carta - (2...K)
             if((ptrC[j]+index)->valore <= 10){
-                printf("%c %i", 179, (ptrC[j]+index)->valore);
+                printf("%c%i", 179, (ptrC[j]+index)->valore);
             }else if((ptrC[j]+index)->valore == 11){
-                printf("%c J", 179);
+                printf("%cJ", 179);
             }else if((ptrC[j]+index)->valore == 12){    
-                printf("%c Q", 179);
+                printf("%cQ", 179);
             }else if((ptrC[j]+index)->valore == 13){
-                printf("%c K", 179);
+                printf("%cK", 179);
             }
             gotoxy(offsetX + offset2, offset1);
             printf("%c", 179);

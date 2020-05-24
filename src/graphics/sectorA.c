@@ -40,13 +40,13 @@ void sector_A(){
             gotoxy(offset1, 1);
             // print valore carta - (2...K)
             if((ptrA+index)->valore <= 10){
-                printf("%c %i", 179, (ptrA+index)->valore);
+                printf("%c%i", 179, (ptrA+index)->valore);
             }else if((ptrA+index)->valore == 11){
-                printf("%c J", 179);
+                printf("%cJ", 179);
             }else if((ptrA+index)->valore == 12){    
-                printf("%c Q", 179);
+                printf("%cQ", 179);
             }else if((ptrA+index)->valore == 13){
-                printf("%c K", 179);
+                printf("%cK", 179);
             }    
             
             gotoxy(offset2, 1);

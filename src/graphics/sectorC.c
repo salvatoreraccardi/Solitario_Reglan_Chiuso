@@ -7,7 +7,7 @@ void sector_C(){
 
     textcolor(15);
     for(j = 0; j < 9; j++){
-        if((ptrC[j])->renderingCard >= 0){
+        if((ptrC[j])->renderingCard != 0){
             for(index = 0; index < ((ptrC[j]+index)->renderingCard - 1); index++){
                 // rendering dorso
                 if((ptrC[j]+index)->dorsi == 1){
@@ -67,9 +67,8 @@ void sector_C(){
                 }  
             }  
 
-
+                        
             // rendering prima carta
-
             if((ptrC[j]+index)->colore == 'R'){
                 textcolor(12);
             }else{

@@ -5,12 +5,23 @@ void sector_C(){
     int offset2 = 0; // Solo per il rendering delle carte che si vedono
     int j;
 
+    textcolor(7);
+    int shift = 0;
+    for(int i = 0; i < 9; i++){
+        gotoxy(2 + shift, 9);
+        printf("C.%d", i);
+        shift += 8;
+    }    
+
+    //SET COLOR
     textcolor(15);
     for(j = 0; j < 9; j++){
         if((ptrC[j])->renderingCard != 0){
             for(index = 0; index < ((ptrC[j]+index)->renderingCard - 1); index++){
                 // rendering dorso
                 if((ptrC[j]+index)->dorsi == 1){
+                    // SET COLOR
+                    textcolor(8);
                     // rendering dorso
                     gotoxy(offsetX, offset1);
                     printf("%c", 218);
@@ -137,6 +148,8 @@ void sector_C(){
             // OUTPUT_4: │     │
             // OUTPUT_5: └─────┘
 
+            // SET COLOR
+            textcolor(8);
             // OUTPUT_1:
             gotoxy(offsetX, offset1);
             printf("%c", 218);

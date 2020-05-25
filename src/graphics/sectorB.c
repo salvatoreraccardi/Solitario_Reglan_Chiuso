@@ -5,6 +5,14 @@ void sector_B(){
     int offset1 = 0;
     int offset2 = 0;
 
+    textcolor(7);
+    int shift = 0;
+    for(int i = 0; i < 4; i++){
+        gotoxy(87 + shift, 6);
+        printf("B.%d", i);
+        shift += 8;
+    }  
+
     // topCard
     offset1 = 85;
     for(index = 0; index < 4; index++){

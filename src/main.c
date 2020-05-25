@@ -68,7 +68,8 @@ int main() {
         
         // CHECK - comando
         if(c_1 == 'A' && c_2 == '>' && c_3 == 'B'){
-            if(ptrA->nCard > 0){                         
+            // CHECK ARRAY INDEX AND GAME RULES 
+            if(ptrA->nCard > 0 && (ptrA+from)->seme == (ptrB+to)->seme && ((ptrA+from)->valore - 1) == (ptrB+to)->valore){                         
                 // Swap data
                 (ptrB+to)->valore = (ptrA+from)->valore;
                 // Sort sector_A
@@ -89,7 +90,8 @@ int main() {
         }
         
         if(c_1 == 'C' && c_2 == '>' && c_3 == 'C'){  
-            if(ptrC[from]->renderingCard != 0){
+            // CHECK ARRAY INDEX AND GAME RULES 
+            if(ptrC[from]->renderingCard != 0 && (ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) && (ptrC[from]+(ptrC[from])->renderingCard - 1)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore)){
                 // SAVE DATA FROM POINTER
                 for(i = 0; i < (ptrC[to])->renderingCard; i++){  
                     tempDorsi[i] = (ptrC[to]+i)->dorsi;
@@ -122,8 +124,6 @@ int main() {
                 (ptrC[to]+(temp_nCard - 1))->valore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->valore; 
                 (ptrC[to]+(temp_nCard - 1))->seme = (ptrC[from]+((ptrC[from])->renderingCard - 1))->seme; 
                 (ptrC[to]+(temp_nCard - 1))->colore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->colore; 
-
-                // TODO: REMOVE CARD FROM OLD POINTER
 
                 // SAVE DATA FROM POINTER AND REMOVE FIRST CARD
                 for(i = 0; i < ((ptrC[from])->renderingCard - 1); i++){  
@@ -163,7 +163,8 @@ int main() {
         }
 
         if(c_1 == 'A' && c_2 == '>' && c_3 == 'C'){  
-            if(ptrA->nCard > 0){                         
+            // CHECK ARRAY INDEX AND GAME RULES 
+            if(ptrA->nCard > 0 && (ptrA+from)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) && (ptrA+from)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore)){                         
                 // SAVE DATA FROM POINTER
                 for(i = 0; i < (ptrC[to])->renderingCard; i++){  
                     tempDorsi[i] = (ptrC[to]+i)->dorsi;

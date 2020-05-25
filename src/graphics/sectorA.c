@@ -4,6 +4,16 @@ void sector_A(){
     int offset1 = 0;
     int offset2 = 0;
 
+    textcolor(7);
+    int shift = 0;
+    for(int i = 0; i < 6; i++){
+        gotoxy(2 + shift, 6);
+        printf("A.%d", i);
+        shift += 8;
+    }   
+
+    //SET COLOR
+    textcolor(15); 
     if((ptrA)->nCard != 0){
         // TopCard
         for(index = 0; index < (ptrA)->nCard; index++){   

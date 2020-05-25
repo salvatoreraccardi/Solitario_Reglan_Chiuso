@@ -91,14 +91,11 @@ int main() {
         
         if(c_1 == 'C' && c_2 == '>' && c_3 == 'C'){  
             // CHECK ARRAY INDEX AND GAME RULES 
-            // (ptrC[from]+(ptrC[from])->renderingCard - 1)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore)
             if(ptrC[from]->renderingCard != 0){
                 // CHECK VALUE
-                if((ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) || (ptrC[to]+(ptrC[to])->renderingCard - 1)->valore < 0){
+                if((ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) || (ptrC[to]+(ptrC[to])->renderingCard - 1)->valore < 0 || (ptrC[to]+(ptrC[to])->renderingCard - 1)->valore > 13){
                     // CHECK COLOR
                     if((ptrC[from]+(ptrC[from])->renderingCard - 1)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore) || ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore) < 0){
-                        //printf("COLOR: %c", ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore));
-                        //delay(3);
                         // SAVE DATA FROM POINTER
                         for(i = 0; i < (ptrC[to])->renderingCard; i++){  
                             tempDorsi[i] = (ptrC[to]+i)->dorsi;
@@ -176,7 +173,7 @@ int main() {
             // CHECK ARRAY INDEX
             if(ptrA->nCard > 0){  
                 // CHECK VALUE
-                if((ptrA+from)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) || ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore < 0)){                    
+                if((ptrA+from)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) || ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore < 0 || ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore > 13))){                    
                     // CHECK COLOR
                     if((ptrA+from)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore) || ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore) < 0){
                         // SAVE DATA FROM POINTER

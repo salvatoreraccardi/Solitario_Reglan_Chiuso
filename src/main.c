@@ -91,75 +91,80 @@ int main() {
         
         if(c_1 == 'C' && c_2 == '>' && c_3 == 'C'){  
             // CHECK ARRAY INDEX AND GAME RULES 
-            if(ptrC[from]->renderingCard != 0 && (ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) && (ptrC[from]+(ptrC[from])->renderingCard - 1)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore)){
-                // SAVE DATA FROM POINTER
-                for(i = 0; i < (ptrC[to])->renderingCard; i++){  
-                    tempDorsi[i] = (ptrC[to]+i)->dorsi;
-                    tempValore[i] = (ptrC[to]+i)->valore;
-                    tempSeme[i] = (ptrC[to]+i)->seme;
-                    tempColore[i] = (ptrC[to]+i)->colore;                
+            // && (ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) && (ptrC[from]+(ptrC[from])->renderingCard - 1)->colore != ((ptrC[to]+(ptrC[to])->renderingCard - 1)->colore)
+            if(ptrC[from]->renderingCard != 0){
+                // CHECK VALUE
+                if((ptrC[from]+(ptrC[from])->renderingCard - 1)->valore == ((ptrC[to]+(ptrC[to])->renderingCard - 1)->valore - 1) || (ptrC[to]+(ptrC[to])->renderingCard - 1)->valore < 0){
+                    // SAVE DATA FROM POINTER
+                    for(i = 0; i < (ptrC[to])->renderingCard; i++){  
+                        tempDorsi[i] = (ptrC[to]+i)->dorsi;
+                        tempValore[i] = (ptrC[to]+i)->valore;
+                        tempSeme[i] = (ptrC[to]+i)->seme;
+                        tempColore[i] = (ptrC[to]+i)->colore;                
+                    }
+
+                    // EDIT RENDERING CARD VALUE
+                    int temp_nCard = (ptrC[to])->renderingCard + 1;
+
+                    // NEW DECLARATION FOR POINTERS
+                    ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+
+                    // UPDATE ALL POINTER
+                    for(i = 0; i < temp_nCard; i++){  
+                        (ptrC[to]+i)->dorsi = tempDorsi[i]; 
+                        (ptrC[to]+i)->renderingCard = temp_nCard;
+                        (ptrC[to]+i)->valore = tempValore[i];
+                        (ptrC[to]+i)->seme = tempSeme[i];
+                        (ptrC[to]+i)->colore = tempColore[i];
+                    }
+
+                    (ptrC[to]+(temp_nCard - 2))->dorsi = 0;
+
+                    (ptrC[to])->renderingCard = temp_nCard;
+
+                    // ADD NEW CARD --> POINTERS
+                    (ptrC[to]+(temp_nCard - 1))->dorsi = 0; 
+                    (ptrC[to]+(temp_nCard - 1))->valore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->valore; 
+                    (ptrC[to]+(temp_nCard - 1))->seme = (ptrC[from]+((ptrC[from])->renderingCard - 1))->seme; 
+                    (ptrC[to]+(temp_nCard - 1))->colore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->colore; 
+
+                    // SAVE DATA FROM POINTER AND REMOVE FIRST CARD
+                    for(i = 0; i < ((ptrC[from])->renderingCard - 1); i++){  
+                        tempDorsi[i] = (ptrC[from]+i)->dorsi;
+                        tempValore[i] = (ptrC[from]+i)->valore;
+                        tempSeme[i] = (ptrC[from]+i)->seme;
+                        tempColore[i] = (ptrC[from]+i)->colore;
+                    }
+
+                    // EDIT RENDERING CARD VALUE
+                    if((ptrC[from])->renderingCard != 0){
+                        temp_nCard = (ptrC[from])->renderingCard - 1;
+                    }
+                    
+                    // NEW DECLARATION FOR POINTERS
+                    ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));  
+                    
+                    // UPDATE ALL POINTER
+                    for(i = 0; i < temp_nCard; i++){  
+                        (ptrC[from]+i)->dorsi = tempDorsi[i]; 
+                        (ptrC[from]+i)->renderingCard = temp_nCard;
+                        (ptrC[from]+i)->valore = tempValore[i];
+                        (ptrC[from]+i)->seme = tempSeme[i];
+                        (ptrC[from]+i)->colore = tempColore[i];
+                    }            
+                    
+                    (ptrC[from])->renderingCard = temp_nCard;
+
+                    // Refresh screen
+                    system("cls");
+                    sector_A();
+                    sector_B();
+                    sector_C();
                 }
-
-                // EDIT RENDERING CARD VALUE
-                int temp_nCard = (ptrC[to])->renderingCard + 1;
-
-                // NEW DECLARATION FOR POINTERS
-                ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
-
-                // UPDATE ALL POINTER
-                for(i = 0; i < temp_nCard; i++){  
-                    (ptrC[to]+i)->dorsi = tempDorsi[i]; 
-                    (ptrC[to]+i)->renderingCard = temp_nCard;
-                    (ptrC[to]+i)->valore = tempValore[i];
-                    (ptrC[to]+i)->seme = tempSeme[i];
-                    (ptrC[to]+i)->colore = tempColore[i];
-                }
-
-                (ptrC[to]+(temp_nCard - 2))->dorsi = 0;
-
-                (ptrC[to])->renderingCard = temp_nCard;
-
-                // ADD NEW CARD --> POINTERS
-                (ptrC[to]+(temp_nCard - 1))->dorsi = 0; 
-                (ptrC[to]+(temp_nCard - 1))->valore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->valore; 
-                (ptrC[to]+(temp_nCard - 1))->seme = (ptrC[from]+((ptrC[from])->renderingCard - 1))->seme; 
-                (ptrC[to]+(temp_nCard - 1))->colore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->colore; 
-
-                // SAVE DATA FROM POINTER AND REMOVE FIRST CARD
-                for(i = 0; i < ((ptrC[from])->renderingCard - 1); i++){  
-                    tempDorsi[i] = (ptrC[from]+i)->dorsi;
-                    tempValore[i] = (ptrC[from]+i)->valore;
-                    tempSeme[i] = (ptrC[from]+i)->seme;
-                    tempColore[i] = (ptrC[from]+i)->colore;
-                }
-
-                // EDIT RENDERING CARD VALUE
-                if((ptrC[from])->renderingCard != 0){
-                    temp_nCard = (ptrC[from])->renderingCard - 1;
-                }
-                
-                // NEW DECLARATION FOR POINTERS
-                ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));  
-                
-                // UPDATE ALL POINTER
-                for(i = 0; i < temp_nCard; i++){  
-                    (ptrC[from]+i)->dorsi = tempDorsi[i]; 
-                    (ptrC[from]+i)->renderingCard = temp_nCard;
-                    (ptrC[from]+i)->valore = tempValore[i];
-                    (ptrC[from]+i)->seme = tempSeme[i];
-                    (ptrC[from]+i)->colore = tempColore[i];
-                }            
-                
-                (ptrC[from])->renderingCard = temp_nCard;
-
-                // Refresh screen
-                system("cls");
-                sector_A();
-                sector_B();
-                sector_C();
             }else{
                 printf("ERR");
             }
+            
         }
 
         if(c_1 == 'A' && c_2 == '>' && c_3 == 'C'){  
@@ -217,7 +222,8 @@ int main() {
         }
 
         if(c_1 == 'C' && c_2 == '>' && c_3 == 'B'){
-            if(ptrC[from]->renderingCard != 0){
+            // CHECK ARRAY INDEX AND GAME RULES 
+            if(ptrC[from]->renderingCard != 0  && (ptrC[from]+((ptrC[from])->renderingCard - 1))->seme == (ptrB+to)->seme && ((ptrC[from]+((ptrC[from])->renderingCard - 1))->valore - 1) == (ptrB+to)->valore){
                 // MOVE THE CARD ON SECTOR B
                 // only value 
                 (ptrB+to)->valore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->valore; 

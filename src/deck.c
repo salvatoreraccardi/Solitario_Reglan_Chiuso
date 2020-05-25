@@ -36,6 +36,7 @@ void deckGeneration(){
     // seed for random index
     srand(time(0)); 
     // Shuffling cards
+    
     for(swap = 0; swap < 300; swap++){
         rnd1 = 0;
         rnd2 = 0;

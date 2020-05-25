@@ -40,7 +40,7 @@ void firstRendering(){
     // load data stack
     for(j = 0; j < 9; j++){
         for(i = 0; i < default_RenderingCard[j]; i++){  
-            (ptrC[j]+i)->dorsi = 1; // 1 for first rendering
+            (ptrC[j]+i)->dorsi = 0; // 1 for first rendering
             (ptrC[j]+i)->renderingCard = default_RenderingCard[j];
             (ptrC[j]+i)->valore = deck.valore[offsetData + i];
             (ptrC[j]+i)->seme = deck.seme[offsetData + i];

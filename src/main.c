@@ -54,16 +54,16 @@ int main() {
     // REALTIME UPDATE
     // INSIDE GAME
     //
-    int j, i;
-    int tempValore[52], tempDorsi[52];
-    char tempSeme[52], tempColore[52];
 
     while(1){
-        textcolor(15); 
-        gotoxy(0, 50);
-        printf("comando: ");
+        int j, i;
+        int tempValore[52], tempDorsi[52];
+        char tempSeme[52], tempColore[52];
         char c_1, c_2, c_3;
         int from, to;
+        textcolor(15); 
+        gotoxy(0, 50);
+        printf("comando: ");       
         scanf("%c %c %c %i %i", &c_1, &c_2, &c_3, &from, &to);
         
         // CHECK - comando
@@ -164,7 +164,6 @@ int main() {
 
         if(c_1 == 'A' && c_2 == '>' && c_3 == 'C'){  
             if(ptrA->nCard > 0){                         
-
                 // SAVE DATA FROM POINTER
                 for(i = 0; i < (ptrC[to])->renderingCard; i++){  
                     tempDorsi[i] = (ptrC[to]+i)->dorsi;
@@ -217,7 +216,46 @@ int main() {
         }
 
         if(c_1 == 'C' && c_2 == '>' && c_3 == 'B'){
+            if(ptrC[from]->renderingCard != 0){
+                // MOVE THE CARD ON SECTOR B
+                // only value 
+                (ptrB+to)->valore = (ptrC[from]+((ptrC[from])->renderingCard - 1))->valore; 
 
+                // SAVE DATA FROM POINTER
+                for(i = 0; i < (ptrC[from])->renderingCard; i++){  
+                    tempDorsi[i] = (ptrC[from]+i)->dorsi;
+                    tempValore[i] = (ptrC[from]+i)->valore;
+                    tempSeme[i] = (ptrC[from]+i)->seme;
+                    tempColore[i] = (ptrC[from]+i)->colore;                
+                }
+
+                // EDIT RENDERING CARD VALUE
+                int temp_nCard = (ptrC[from])->renderingCard - 1;
+
+                // NEW DECLARATION FOR POINTERS
+                ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+
+                // UPDATE ALL POINTER
+                for(i = 0; i < temp_nCard; i++){  
+                    (ptrC[from]+i)->dorsi = tempDorsi[i]; 
+                    (ptrC[from]+i)->renderingCard = temp_nCard;
+                    (ptrC[from]+i)->valore = tempValore[i];
+                    (ptrC[from]+i)->seme = tempSeme[i];
+                    (ptrC[from]+i)->colore = tempColore[i];
+                }
+
+                (ptrC[from]+(temp_nCard - 1))->dorsi = 0;
+
+                (ptrC[from])->renderingCard = temp_nCard;      
+
+                // Refresh screen
+                system("cls");
+                sector_A();
+                sector_B();
+                sector_C();
+            }else{
+                printf("ERR");
+            }    
         }  
 
     }

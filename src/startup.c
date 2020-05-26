@@ -22,7 +22,7 @@ void menu(){
     printf("Per una nuova partita");
     gotoxy(47, 22);
     printf("> PREMI INVIO <");
-    
+
 
     // sleep
     while(getch() != 13){}

@@ -272,6 +272,9 @@ int main() {
                 printf("ERR");
             }    
         }  
+        // SCANF - CLEAR INPUT BUFFER
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) { }
 
     }
 
@@ -285,6 +288,5 @@ int main() {
     // Clear screen
     system("cls");
     printf("Bye");
-    //getch();
     return 0;
 }

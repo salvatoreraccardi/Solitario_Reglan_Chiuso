@@ -35,6 +35,7 @@ void sector_B();
 void sector_C();
 void firstRendering();
 void errorAlert(char type);
+void winCheck();
 
 int main() {
     // console name
@@ -43,7 +44,7 @@ int main() {
     system("cls");
 
     // Schemata iniziale
-    //splashscreen();
+    // splashscreen();
 
     // Generazione del deck
     deckGeneration();
@@ -312,7 +313,11 @@ int main() {
                 // Errore array index
                 errorAlert('A');
             }    
-        }  
+        }
+
+        //WIN
+        winCheck();
+
         // SCANF - CLEAR INPUT BUFFER
         int c;
         while ((c = getchar()) != '\n' && c != EOF) { }
@@ -321,7 +326,9 @@ int main() {
     //TODO: FREE ALL POINTERS
     free(ptrA);
     free(ptrB);
-    free(ptrC);
+    for(int j = 0; j < 9; j++){
+        free(ptrC[j]);
+    }
 
     // Fix text color
     textcolor(15);  

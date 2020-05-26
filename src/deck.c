@@ -32,7 +32,17 @@ void deckGeneration(){
         }
         index = 2;
         offset += 12;
-    }   
+    }  
+
+    
+    /*
+    //EASY WIN
+    deck.valore[0] = 13; 
+    deck.valore[1] = 13; 
+    deck.valore[2] = 13; 
+    deck.valore[3] = 13; 
+    */
+    
     // seed for random index
     srand(time(0)); 
     // Shuffling cards   
@@ -57,10 +67,13 @@ void deckGeneration(){
         deck.colore[rnd1] = deck.colore[rnd2];
         deck.colore[rnd2] = tempColore;
     }
+    
     // DEBUG: PRINT DATASET   
     /*
     for(int k = 0; k < 52; k++){
-        printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deckValore[k], deckSeme[k], deckColore[k]);
+        printf("Index: %i \t Valore: %i \t Seme: %c \t Colore: %c \n", k, deck.valore[k], deck.seme[k], deck.colore[k]);
     }
-    */    
+    //delay(5);    
+    system("cls");
+    */
 }

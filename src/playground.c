@@ -52,6 +52,17 @@ void firstRendering(){
     sector_C();
 }
 
+// WIN CHECK
+void winCheck(){
+    if((ptrB+0)->valore == 13 && (ptrB+1)->valore == 13 && (ptrB+2)->valore == 13 && (ptrB+3)->valore == 13){
+        textcolor(15);  
+        system("cls");
+        gotoxy(0,0);
+        printf("HAI VINTO!");
+        delay(5);
+    }  
+}
+
 // ERROR POPUP
 void errorAlert(char type){
     textcolor(12);

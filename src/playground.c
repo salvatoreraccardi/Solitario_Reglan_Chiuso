@@ -51,3 +51,26 @@ void firstRendering(){
     // rendering sector_C
     sector_C();
 }
+
+// ERROR POPUP
+void errorAlert(char type){
+    textcolor(12);
+    gotoxy(0, 55);                     
+    if(type == 'A'){
+        // ARRAY INDEX - NON VALIDO
+        printf("Mossa non consentita, carte non sufficienti!");
+    }else if(type == 'V'){
+        // VALORE DELLA CARTA 
+        printf("Il valore della carta non consente la mossa!");
+    }else if(type == 'C'){
+        // COLORE DELLA CARTA
+        printf("Il colore della carta non consente la mossa!");
+    }else if(type == 'S'){
+        // SEME DELLA CARTA
+        printf("Il seme della carta non consente la mossa!");
+    }else if(type == 'G'){  
+        // ERRORE GENERICO
+        printf("Stai sbagliando qualcosa, controlla che il comando sia corretto!");
+    }
+    textcolor(15);
+}

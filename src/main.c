@@ -14,7 +14,6 @@
 #include <stdbool.h>
 #include <conio.h>
 #include <windows.h>
-#include <time.h> 
 
 #include "dataset.c"
 #include "tools.c"
@@ -28,7 +27,7 @@
 void textcolor(int colore);
 void gotoxy(short x, short y);
 void delay(int seconds);
-void splashscreen();
+void menu();
 void deckGeneration();
 void sector_A();
 void sector_B();
@@ -36,6 +35,7 @@ void sector_C();
 void firstRendering();
 void errorAlert(char type);
 void winCheck();
+void hidecursor(boolean status);
 
 int main() {
     // console name
@@ -43,8 +43,8 @@ int main() {
     // Clear screen
     system("cls");
 
-    // Schemata iniziale
-    // splashscreen();
+    // Menù
+    menu();
 
     // Generazione del deck
     deckGeneration();
@@ -63,6 +63,8 @@ int main() {
         char tempSeme[52], tempColore[52];
         char c_1, c_2, c_3;
         int from, to;
+
+        hidecursor(true);
         textcolor(15); 
         gotoxy(0, 50);
         printf("comando: ");       
@@ -330,10 +332,12 @@ int main() {
         free(ptrC[j]);
     }
 
+    // BG color
+    system("COLOR 0");
     // Fix text color
     textcolor(15);  
     // Clear screen
-    system("cls");
-    printf("Bye");
+    system("cls");  
+
     return 0;
 }

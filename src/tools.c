@@ -22,3 +22,10 @@ int random(int lower, int upper){
             (upper - lower + 1)) + lower; 
     return num; 
 } 
+void hidecursor(boolean status){
+   HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+   CONSOLE_CURSOR_INFO info;
+   info.dwSize = 10;
+   info.bVisible = status;
+   SetConsoleCursorInfo(consoleHandle, &info);
+}

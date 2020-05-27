@@ -15,6 +15,8 @@
 #include <conio.h>
 #include <windows.h>
 
+int gameStatus = 1;
+
 #include "dataset.c"
 #include "tools.c"
 #include "startup.c"
@@ -42,22 +44,18 @@ int main() {
     SetConsoleTitle("Solitario Reglan Chiuso - (v0.5.0)");
     // Clear screen
     system("cls");
-
     // Menù
     menu();
-
     // Generazione del deck
     deckGeneration();
     // Playground first rendering
-    firstRendering();
-    
+    firstRendering();   
 
     //
     // REALTIME UPDATE
     // INSIDE GAME
     //
-
-    while(1){
+    while(gameStatus == 1){
         int j, i;
         int tempValore[52], tempDorsi[52];
         char tempSeme[52], tempColore[52];
@@ -317,8 +315,8 @@ int main() {
             }    
         }
 
-        //WIN
-        winCheck();
+        // WIN
+        winCheck();       
 
         // SCANF - CLEAR INPUT BUFFER
         int c;
@@ -334,8 +332,13 @@ int main() {
 
     // BG color
     system("COLOR 0");
+    // Clear screen
+    system("cls");  
     // Fix text color
-    textcolor(15);  
+    textcolor(15);    
+    printf("Bye");
+    // Wait
+    delay(3);
     // Clear screen
     system("cls");  
 

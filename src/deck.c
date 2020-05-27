@@ -35,13 +35,13 @@ void deckGeneration(){
     }  
 
     
-    /*
-    //EASY WIN
-    deck.valore[0] = 13; 
-    deck.valore[1] = 13; 
-    deck.valore[2] = 13; 
-    deck.valore[3] = 13; 
-    */
+    
+    // EASY WIN
+    //deck.valore[0] = 13; 
+    //deck.valore[1] = 13; 
+    //deck.valore[2] = 13; 
+    //deck.valore[3] = 13; 
+    
     
     // seed for random index
     srand(time(0)); 

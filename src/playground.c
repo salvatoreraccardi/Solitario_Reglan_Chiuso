@@ -1,43 +1,48 @@
 void firstRendering(){
+    // Variabili per i contatori
+    int i, j;
     /* 
-        SECTOR_A - first rendering deck
+        SECTOR_A - Prima generazione del mazzo(inizio partita)
     */ 
     int default_nCard = 6;
+    // Memory allocation - per la struct "stack_sector_a" 
     ptrA = (struct stack_sector_a*) malloc(default_nCard* sizeof(struct stack_sector_a));
     ptrA->nCard = default_nCard;
-    for(int i = 0; i < 6; i++){
+    // Caricamento dei dati dalla struct deck al puntatore del settore_A
+    for(i = 0; i < 6; i++){
         (ptrA+i)->valore = deck.valore[46 + i];
         (ptrA+i)->seme = deck.seme[46 + i];
         (ptrA+i)->colore = deck.colore[46 + i];
     }
+    // Grafica settore A
     sector_A();
 
     /* 
-        SECTOR_B - first rendering deck
+        SECTOR_B - Prima generazione del mazzo(inizio partita)
     */ 
+    // Memory allocation - per la struct "stack_sector_b" 
     ptrB = (struct stack_sector_b*) malloc(4* sizeof(struct stack_sector_b));
-    for(int i = 0; i < 4; i++){
+    // Caricamento dei dati dalla struct deck al puntatore del settore_B
+    for(i = 0; i < 4; i++){
         (ptrB+i)->valore = deck.valore[i];
         (ptrB+i)->seme = deck.seme[i];
         (ptrB+i)->colore = deck.colore[i];
     }
+    // Grafica settore B
     sector_B();
 
     /* 
-        SECTOR_C - first rendering deck
+        SECTOR_C - Prima generazione del mazzo(inizio partita)
     */ 
     
-    int offsetData = 4; // TODO: EDIT
-    int i, j;
-
+    int offsetData = 4;
+    // Pattern per la prima generazione delle carte
     int default_RenderingCard[9] = {7, 7, 7, 6, 5, 4, 3, 2, 1};
-
-    // allocating memory for n numbers of struct stack_sector_c
+    // Memory allocation - per "n" numeri di struct "stack_sector_a" 
     for(j = 0; j < 9; j++){
         ptrC[j] = (struct stack_sector_c*) malloc(default_RenderingCard[j]* sizeof(struct stack_sector_c));
     }
-
-    // load data stack
+    // Caricamento dei dati dalla struct deck al puntatore[j] del settore_C
     for(j = 0; j < 9; j++){
         for(i = 0; i < default_RenderingCard[j]; i++){  
             (ptrC[j]+i)->dorsi = 1; // 1 for first rendering
@@ -48,7 +53,7 @@ void firstRendering(){
         }      
         offsetData += default_RenderingCard[j];
     }
-    // rendering sector_C
+    // Grafica settore C
     sector_C();
 }
 
@@ -86,7 +91,7 @@ void winCheck(){
     }  
 }
 
-// ERROR POPUP
+// Messaggio di errore
 void errorAlert(char type){
     textcolor(12);
     gotoxy(0, 52);                     

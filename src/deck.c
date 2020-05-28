@@ -1,14 +1,19 @@
 // Carte rosse: 13x♥ - 13x♦
-// Carte nere: 13x♣ - 13x♠ 
+// Carte nere: 13x♣ - 13x♠
+// Generazione del deck   
 void deckGeneration(){
-    // Generazione del deck   
+    // Variabili per i contatori
     int y, i, j, swap;
+    // Variabili per la generazione delle carte
     int index = 2, offset = 0;
+    // Variabili per la generazione di numeri random
     int rnd1, rnd2;
+    // (SWAP) - Variabili temporanee per le carte 
     int tempValore; 
     char tempSeme, tempColore;
+    // TODO: DA VEDERE!
     char semi[4] = {3,5,4,6};
-    // Assi
+    // Generazione Assi
     for(y = 0; y < 4; y++){
         deck.valore[y] = 1;
         deck.seme[y] = semi[y];
@@ -18,7 +23,7 @@ void deckGeneration(){
             deck.colore[y] = 'B';
         }
     }
-    // tutte le carte = 48
+    // Generazione delle carte (48) - ASSI ESCLUSI
     for(i = 0; i < 4; i++){
         for(j = 0; j < 12; j++){
             deck.valore[4 + j + offset] = index;
@@ -32,24 +37,21 @@ void deckGeneration(){
         }
         index = 2;
         offset += 12;
-    }  
+    } 
 
-    
-    
-    // EASY WIN
+    // DEBUG - EASY WIN
     //deck.valore[0] = 13; 
     //deck.valore[1] = 13; 
     //deck.valore[2] = 13; 
     //deck.valore[3] = 13; 
     
-    
-    // seed for random index
+    // Generazione del "seed"
     srand(time(0)); 
     // Shuffling cards   
     for(swap = 0; swap < 300; swap++){
         rnd1 = 0;
         rnd2 = 0;
-        // Random index
+        // Generazione casuale dei due indirizzi
         while(rnd1 == rnd2 && deck.valore[rnd1] == deck.valore[rnd2]){
             rnd1 = random(4, 51);
             rnd2 = random(4, 51);
@@ -62,7 +64,7 @@ void deckGeneration(){
         tempSeme = deck.seme[rnd1];
         deck.seme[rnd1] = deck.seme[rnd2];
         deck.seme[rnd2] = tempSeme;
-        // Swap Seme
+        // Swap Colore
         tempColore = deck.colore[rnd1];
         deck.colore[rnd1] = deck.colore[rnd2];
         deck.colore[rnd2] = tempColore;

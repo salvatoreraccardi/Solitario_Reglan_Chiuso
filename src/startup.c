@@ -1,5 +1,7 @@
 void menu(){
+    // Cursore disabilitato
     hidecursor(false);
+    // Imposto la dimensione della console
     SMALL_RECT windowSize = {0, 0, 117, 52};
     SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &windowSize);
     system("COLOR 1F");

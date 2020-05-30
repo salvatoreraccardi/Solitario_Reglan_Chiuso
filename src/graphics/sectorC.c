@@ -5,7 +5,7 @@ void sector_C(){
     int offset2 = 0; // Solo per il rendering delle carte che si vedono
     int j;
 
-    textcolor(7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 47);
     int shift = 0;
     for(int i = 0; i < 9; i++){
         gotoxy(2 + shift, 9);
@@ -14,14 +14,14 @@ void sector_C(){
     }    
 
     //SET COLOR
-    textcolor(15);
+    //textcolor(15);
     for(j = 0; j < 9; j++){
         if((ptrC[j])->renderingCard != 0){
             for(index = 0; index < ((ptrC[j]+index)->renderingCard - 1); index++){
                 // rendering dorso
                 if((ptrC[j]+index)->dorsi == 1){
                     // SET COLOR
-                    textcolor(8);
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 240);
                     // rendering dorso
                     gotoxy(offsetX, offset1);
                     printf("%c", 218);
@@ -38,12 +38,11 @@ void sector_C(){
                     printf("%c", 179);  
                     offset1 += 2;
                 }else if((ptrC[j]+index)->dorsi == 0){
-
                     // rendering carta
                     if((ptrC[j]+index)->colore == 'R'){
-                        textcolor(12);
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 252);
                     }else{
-                        textcolor(15);
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 240);
                     }
                     
                     gotoxy(offsetX, offset1);
@@ -62,13 +61,13 @@ void sector_C(){
                     // valore 
                     // print valore carta - (2...K)
                     if((ptrC[j]+index)->valore <= 10){
-                        printf("%i",(ptrC[j]+index)->valore);
+                        printf("%i   ",(ptrC[j]+index)->valore);
                     }else if((ptrC[j]+index)->valore == 11){
-                        printf("J");
+                        printf("J   ");
                     }else if((ptrC[j]+index)->valore == 12){    
-                        printf("Q");
+                        printf("Q   ");
                     }else if((ptrC[j]+index)->valore == 13){
-                        printf("K");
+                        printf("K   ");
                     }
                     gotoxy(offsetX + (offset2 += 4), offset1 - 1);
                     // seme
@@ -81,9 +80,9 @@ void sector_C(){
                         
             // rendering prima carta
             if((ptrC[j]+index)->colore == 'R'){
-                textcolor(12);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 252);
             }else{
-                textcolor(15);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 240);
             }
 
             gotoxy(offsetX, offset1);
@@ -100,13 +99,13 @@ void sector_C(){
             gotoxy(offsetX, offset1);
             // print valore carta - (2...K)
             if((ptrC[j]+index)->valore <= 10){
-                printf("%c%i", 179, (ptrC[j]+index)->valore);
+                printf("%c%i    ", 179, (ptrC[j]+index)->valore);
             }else if((ptrC[j]+index)->valore == 11){
-                printf("%cJ", 179);
+                printf("%cJ     ", 179);
             }else if((ptrC[j]+index)->valore == 12){    
-                printf("%cQ", 179);
+                printf("%cQ     ", 179);
             }else if((ptrC[j]+index)->valore == 13){
-                printf("%cK", 179);
+                printf("%cK     ", 179);
             }
             gotoxy(offsetX + offset2, offset1);
             printf("%c", 179);
@@ -115,7 +114,7 @@ void sector_C(){
             for(int i = 0; i < 2; i++){
                 offset1 += 1;
                 gotoxy(offsetX, offset1);
-                printf("%c", 179);
+                printf("%c     ", 179);
                 gotoxy(offsetX + offset2, offset1);
                 printf("%c", 179);
             }      
@@ -123,7 +122,7 @@ void sector_C(){
 
             offset1 += 1;
             gotoxy(offsetX, offset1);  
-            printf("%c", 179);
+            printf("%c    ", 179);
             gotoxy(offsetX + (offset2 - 1), offset1);
             // Print del seme
             printf("%c", (ptrC[j]+index)->seme);
@@ -149,7 +148,7 @@ void sector_C(){
             // OUTPUT_5: └─────┘
 
             // SET COLOR
-            textcolor(8);
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 39);
             // OUTPUT_1:
             gotoxy(offsetX, offset1);
             printf("%c", 218);

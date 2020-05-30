@@ -60,10 +60,13 @@ int main() {
     system("cls");
     // Menù
     menu();
+    system("COLOR 20");
+    // Caricamento partita 
+    loading(); 
     // Generazione del mazzo
     deckGeneration();
     // Il primo caricamento del campo di gioco
-    firstRendering();   
+    firstRendering();  
     // Ciclo per il controllo della partita
     while(gameStatus == 1){
         // Variabili locali del ciclo while
@@ -77,7 +80,7 @@ int main() {
         int from, to;
         // Abilito il cursore
         hidecursor(true);
-        textcolor(15); 
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 47);
         gotoxy(0, 50);
         printf("comando: "); 
         // Format del comando: es. A>B 1 3 - Sposto la carta 1 del settore A --> alla posizione 3 del settore B       

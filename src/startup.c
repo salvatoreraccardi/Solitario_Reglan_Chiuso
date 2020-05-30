@@ -9,22 +9,22 @@ void menu(){
     gotoxy(43, 10);
     printf("Solitario Reglan Chiuso");
 
-    gotoxy(40, 13);
-    printf("Lista comandi");
-    gotoxy(40, 15);
-    printf("(1) A>B from to");
-    gotoxy(40, 16);
-    printf("(2) A>C from to");
-    gotoxy(40, 17);
-    printf("(3) C>C from to");
-    gotoxy(40, 18);
-    printf("(4) C>B from to");
+    gotoxy(30, 13);
+    printf("Regole");
+    gotoxy(30, 15);
+    printf("1. Ordina le carte per seme in sequenza dall'asso al re");
+    gotoxy(30, 16);
+    printf("3. Gli spazi possono essere riempiti con qualsiasi carta disponibile");
+    gotoxy(30, 17);
+    printf("4. Ordina le carte alternando il colore");
+    gotoxy(30, 18);
+    printf("5. Puoi spostare solo una carta per ogni mossa");
     
-    gotoxy(44, 20);
+    
+    gotoxy(44, 30);
     printf("Per una nuova partita");
-    gotoxy(47, 22);
+    gotoxy(47, 32);
     printf("> PREMI INVIO <");
-
 
     // sleep
     while(getch() != 13){}

@@ -57,6 +57,25 @@ void firstRendering(){
     sector_C();
 }
 
+// Caricamento partita
+void loading(){
+    char semi[4] = {3,5,4,6};
+    system("cls");
+    gotoxy(45, 18);
+    printf("Caricamento della partita");
+    for(int i = 0; i < 4; i++){
+        if(i == 0 || i == 2){
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 44);
+        }else{
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 32);
+        }
+        gotoxy(54 + (i * 2), 20);
+        printf("%c", semi[i]);
+        delay(1);
+    }
+    system("cls");
+}
+
 // WIN CHECK
 void winCheck(){
     if((ptrB+0)->valore == 13 && (ptrB+1)->valore == 13 && (ptrB+2)->valore == 13 && (ptrB+3)->valore == 13){      
@@ -93,7 +112,7 @@ void winCheck(){
 
 // Messaggio di errore
 void errorAlert(char type){
-    textcolor(12);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 207);
     gotoxy(0, 52);                     
     if(type == 'A'){
         // ARRAY INDEX - NON VALIDO

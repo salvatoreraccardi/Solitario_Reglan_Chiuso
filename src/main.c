@@ -81,6 +81,9 @@ int main() {
         // Abilito il cursore
         hidecursor(true);
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 47);
+        // Lista comandi
+        commands();
+        // SCANF - comando
         gotoxy(0, 50);
         printf("comando: "); 
         // Format del comando: es. A>B 1 3 - Sposto la carta 1 del settore A --> alla posizione 3 del settore B       

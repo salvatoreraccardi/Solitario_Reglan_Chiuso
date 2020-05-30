@@ -59,8 +59,10 @@ void firstRendering(){
 
 // Caricamento partita
 void loading(){
-    char semi[4] = {3,5,4,6};
+    char semi[4] = {3,5,4,6};   
     system("cls");
+    // Cursore disabilitato
+    hidecursor(false);
     gotoxy(45, 18);
     printf("Caricamento della partita");
     for(int i = 0; i < 4; i++){
@@ -73,13 +75,33 @@ void loading(){
         printf("%c", semi[i]);
         delay(1);
     }
+    hidecursor(true);
     system("cls");
+}
+
+// Lista comandi
+void commands(){
+    gotoxy(95, 20);
+    printf("Comandi:");
+    gotoxy(95, 22);
+    printf("from(da) - to(a)");
+    gotoxy(95, 24);
+    printf("A>B from to");
+    gotoxy(95, 25);
+    printf("A>C from to");
+    gotoxy(95, 26);
+    printf("C>C from to");
+    gotoxy(95, 27);
+    printf("C>B from to");
+    gotoxy(95, 29);
+    printf("es. A>C 0 1");
 }
 
 // WIN CHECK
 void winCheck(){
     if((ptrB+0)->valore == 13 && (ptrB+1)->valore == 13 && (ptrB+2)->valore == 13 && (ptrB+3)->valore == 13){      
         system("cls");
+        hidecursor(false);
         system("COLOR 0E"); 
         gotoxy(52, 10);
         printf("HAI VINTO!");
@@ -99,6 +121,9 @@ void winCheck(){
             }else if(value == 13){
                 // ENTER
                 system("cls");
+                system("COLOR 20");
+                // Caricamento partita 
+                loading(); 
                 // Generazione del deck
                 deckGeneration();
                 // Playground first rendering
@@ -107,7 +132,8 @@ void winCheck(){
             }
         }
         
-    }  
+    } 
+    hidecursor(true); 
 }
 
 // Messaggio di errore

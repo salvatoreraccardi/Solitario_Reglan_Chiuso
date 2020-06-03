@@ -22,6 +22,7 @@ int random(int lower, int upper){
             (upper - lower + 1)) + lower; 
     return num; 
 } 
+// abilitazione / disabilitazione cursore
 void hidecursor(boolean status){
    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
    CONSOLE_CURSOR_INFO info;

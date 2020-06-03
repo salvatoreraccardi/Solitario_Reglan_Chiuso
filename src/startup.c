@@ -19,19 +19,15 @@ void menu(){
     printf("4. Ordina le carte alternando il colore");
     gotoxy(30, 18);
     printf("5. Puoi spostare solo una carta per ogni mossa");
-    
-    
+     
     gotoxy(44, 30);
     printf("Per una nuova partita");
     gotoxy(47, 32);
     printf("> PREMI INVIO <");
 
-    // sleep
+    // WAIT
     while(getch() != 13){}
     system("COLOR 0F");
-    
-    //printf("Salvatore Raccardi: salvatore.raccardi@community.unipa.it\n");
-    //printf("Antonino Graziano: antonino.graziano01@community.unipa.it\n");
-    //delay(4);
+
     system("cls");
 }

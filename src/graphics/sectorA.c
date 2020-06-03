@@ -11,21 +11,14 @@ void sector_A(){
         printf("A.%d", i);
         shift += 8;
     }   
-    
-    //gotoxy(30, 0);
-    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 240);
-    //printf("A");
-    //SET COLOR
-    //system("COLOR 27"); 
+
     if((ptrA)->nCard != 0){
         // TopCard
         for(index = 0; index < (ptrA)->nCard; index++){   
             // colore stampa
             if((ptrA+index)->colore == 'R'){
-                //textcolor(12);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 252);
             }else{
-                //textcolor(15);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 240);
             }        
             // imposto la posizione del cursore (x,y)
@@ -63,11 +56,8 @@ void sector_A(){
             }else if((ptrA+index)->valore == 13){
                 printf("%cK     ", 179);
             }   
-
-
             gotoxy(offset2, 1);
             printf("%c", 179);
-
             // traslazione di 8pixel per il print successivo 
             offset1 += 8;
             offset2 += 8;

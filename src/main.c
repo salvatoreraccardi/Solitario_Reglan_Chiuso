@@ -75,7 +75,6 @@ int main() {
         // (SWAP) - Variabili temporanee per scambiare le carte tra puntatori
         int tempValore[52], tempDorsi[52];
         char tempSeme[52], tempColore[52];
-        // TODO: DA VEDERE!
         char c_1, c_2, c_3;
         int from, to;
         // Abilito il cursore

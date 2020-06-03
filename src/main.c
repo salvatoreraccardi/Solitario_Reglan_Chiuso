@@ -140,7 +140,8 @@ int main() {
                         // Modifico il numero di carte presenti nel puntatore(to)-(Array dinamico)
                         int temp_nCard = (ptrC[to])->renderingCard + 1;
                         // Memory allocation
-                        ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+                        //ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+                        ptrC[to] = realloc(ptrC[to], temp_nCard* sizeof(struct stack_sector_c));
                         // Carico i dati nel nuovo puntatore(to) 
                         for(i = 0; i < temp_nCard; i++){  
                             (ptrC[to]+i)->dorsi = tempDorsi[i]; 
@@ -170,7 +171,10 @@ int main() {
                             temp_nCard = (ptrC[from])->renderingCard - 1;
                         }                   
                         // Memory allocation
-                        ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));                         
+                        //ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));  
+                        if(temp_nCard > 0){
+                            ptrC[from] = realloc(ptrC[from], temp_nCard* sizeof(struct stack_sector_c)); 
+                        }                   
                         // Carico i dati nel nuovo puntatore(from)
                         for(i = 0; i < temp_nCard; i++){  
                             (ptrC[from]+i)->dorsi = tempDorsi[i]; 
@@ -218,7 +222,8 @@ int main() {
                         // Modifico il numero di carte presenti nel puntatore(to)-(Array dinamico)
                         int temp_nCard = (ptrC[to])->renderingCard + 1;
                         // Memory allocation
-                        ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+                        //ptrC[to] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c)); 
+                        ptrC[to] = realloc(ptrC[to], temp_nCard* sizeof(struct stack_sector_c));    
                         // Carico i dati nel nuovo puntatore(to)
                         for(i = 0; i < temp_nCard; i++){  
                             (ptrC[to]+i)->dorsi = tempDorsi[i]; 
@@ -282,7 +287,10 @@ int main() {
                         // Modifico il numero di carte presenti nel puntatore(from)
                         int temp_nCard = (ptrC[from])->renderingCard - 1;
                         // Memory allocation
-                        ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c));   
+                        //ptrC[from] = (struct stack_sector_c*) malloc(temp_nCard* sizeof(struct stack_sector_c)); 
+                        if(temp_nCard > 0){
+                            ptrC[from] = realloc(ptrC[from], temp_nCard* sizeof(struct stack_sector_c));
+                        }               
                         // Carico i dati nel nuovo puntatore(from)
                         for(i = 0; i < temp_nCard; i++){  
                             (ptrC[from]+i)->dorsi = tempDorsi[i]; 

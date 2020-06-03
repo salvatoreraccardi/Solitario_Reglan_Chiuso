@@ -13,30 +13,9 @@ Le carte possono essere spostate dalle colonne secondo le regole seguenti: si pu
 
 Il gioco termina in caso di vittoria ovvero nel momento in cui le 4 basi conterranno le carte correttamente impilate oppure in caso di sconfitta ovvero nel momento in cui il giocatore non avrà più mosse consentite a sua disposizione.  
 
-## Documentazione del codice
-
-### Campo di gioco
-
 ![SLIDE 1](https://github.com/salvatoreraccardi/Solitario_Reglan_Chiuso/blob/master/image/slide_1.jpg)
-
-Il campo di gioco è diviso in settori (A , B , C):
-- (A):
-```
-void sector_A(...);
-```
-- (B):
-```
-void sector_B(...);
-```
-- (C):
-```
-void sector_C(...);
-```
 
 ## Contact
 
 - Salvatore Raccardi <salvatore.raccardi@community.unipa.it>
 - Antonino Graziano <antonino.graziano01@community.unipa.it>
-
-## Link utili
-https://guides.lib.berkeley.edu/how-to-write-good-documentation

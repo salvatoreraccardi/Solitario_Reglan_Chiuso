@@ -47,7 +47,6 @@ struct stack_sector_b *ptrB;
 struct stack_sector_c *ptrC[9];
 
 #include "tools.c"
-#include "startup.c"
 #include "graphics/sectorA.c"
 #include "graphics/sectorB.c"
 #include "graphics/sectorC.c"
@@ -58,11 +57,41 @@ int main() {
     // Nome della console
     SetConsoleTitle("Solitario Reglan Chiuso");
     system("cls");
-    // Menù
-    menu();
+    /* 
+        Menù
+    */
+    // Cursore disabilitato
+    hidecursor(false);
+    // Imposto la dimensione della console
+    SMALL_RECT windowSize = {0, 0, 117, 52};
+    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &windowSize);
+    system("COLOR 1F");
+
+    gotoxy(43, 10);
+    printf("Solitario Reglan Chiuso");
+    gotoxy(30, 13);
+    printf("Regole");
+    gotoxy(30, 15);
+    printf("1. Ordina le carte per seme in sequenza dall'asso al re");
+    gotoxy(30, 16);
+    printf("3. Gli spazi possono essere riempiti con qualsiasi carta disponibile");
+    gotoxy(30, 17);
+    printf("4. Ordina le carte alternando il colore");
+    gotoxy(30, 18);
+    printf("5. Puoi spostare solo una carta per ogni mossa");
+     
+    gotoxy(44, 30);
+    printf("Per una nuova partita");
+    gotoxy(47, 32);
+    printf("> PREMI INVIO <");
+
+    // WAIT
+    while(getch() != 13){}
+    system("cls");
     system("COLOR 20");
+
     // Caricamento partita 
-    loading(); 
+    loading('f'); 
     // Generazione del mazzo
     deckGeneration();
     // Il primo caricamento del campo di gioco
@@ -81,7 +110,20 @@ int main() {
         hidecursor(true);
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 47);
         // Lista comandi
-        commands();
+        gotoxy(95, 20);
+        printf("Comandi:");
+        gotoxy(95, 22);
+        printf("from(da) - to(a)");
+        gotoxy(95, 24);
+        printf("A>B from to");
+        gotoxy(95, 25);
+        printf("A>C from to");
+        gotoxy(95, 26);
+        printf("C>C from to");
+        gotoxy(95, 27);
+        printf("C>B from to");
+        gotoxy(95, 29);
+        printf("es. A>C 0 1");
         // SCANF - comando
         gotoxy(0, 50);
         printf("comando: "); 
@@ -322,7 +364,41 @@ int main() {
             }    
         }
         // Controllo vittoria
-        winCheck();       
+        if((ptrB+0)->valore == 13 && (ptrB+1)->valore == 13 && (ptrB+2)->valore == 13 && (ptrB+3)->valore == 13){     
+            system("cls");
+            hidecursor(false);
+            system("COLOR 0E"); 
+            gotoxy(52, 10);
+            printf("HAI VINTO!");
+            textcolor(15);
+            gotoxy(35, 15);
+            printf("PREMI (INVIO) PER INIZIARE UNA NUOVA PARTITA");
+            gotoxy(42, 17);
+            printf("PREMI (ESC) PER USCIRE DAL GIOCO");
+            int value, cycle = 1;
+            // WAIT
+            while(cycle == 1){
+                value = getch();
+                if(value == 27){
+                    // EXIT
+                    cycle = 0;
+                    gameStatus = 0;
+                }else if(value == 13){
+                    // ENTER
+                    system("cls");
+                    system("COLOR 20");
+                    // Caricamento partita 
+                    loading('n'); 
+                    // Generazione del deck
+                    deckGeneration();
+                    // Playground first rendering
+                    firstRendering(); 
+                    cycle = 0;
+                }
+            }
+            
+        } 
+        hidecursor(true);      
         // SCANF - CLEAR INPUT BUFFER
         int c;
         while ((c = getchar()) != '\n' && c != EOF) { }

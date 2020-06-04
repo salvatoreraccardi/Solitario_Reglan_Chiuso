@@ -58,13 +58,19 @@ void firstRendering(){
 }
 
 // Caricamento partita
-void loading(){
+void loading(char type){
     char semi[4] = {3,5,4,6};   
     system("cls");
     // Cursore disabilitato
     hidecursor(false);
     gotoxy(45, 18);
-    printf("Caricamento della partita");
+    if(type == 'f'){
+        // Prima partita
+        printf("Caricamento della partita");
+    }else if(type == 'n'){
+        // Nuova partita
+        printf("Caricamento nuova partita");
+    }
     for(int i = 0; i < 4; i++){
         if(i == 0 || i == 2){
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 44);
@@ -77,63 +83,6 @@ void loading(){
     }
     hidecursor(true);
     system("cls");
-}
-
-// Lista comandi
-void commands(){
-    gotoxy(95, 20);
-    printf("Comandi:");
-    gotoxy(95, 22);
-    printf("from(da) - to(a)");
-    gotoxy(95, 24);
-    printf("A>B from to");
-    gotoxy(95, 25);
-    printf("A>C from to");
-    gotoxy(95, 26);
-    printf("C>C from to");
-    gotoxy(95, 27);
-    printf("C>B from to");
-    gotoxy(95, 29);
-    printf("es. A>C 0 1");
-}
-
-// WIN CHECK
-void winCheck(){
-    if((ptrB+0)->valore == 13 && (ptrB+1)->valore == 13 && (ptrB+2)->valore == 13 && (ptrB+3)->valore == 13){      
-        system("cls");
-        hidecursor(false);
-        system("COLOR 0E"); 
-        gotoxy(52, 10);
-        printf("HAI VINTO!");
-        textcolor(15);
-        gotoxy(35, 15);
-        printf("PREMI (INVIO) PER INIZIARE UNA NUOVA PARTITA");
-        gotoxy(42, 17);
-        printf("PREMI (ESC) PER USCIRE DAL GIOCO");
-        int value, cycle = 1;
-        // WAIT
-        while(cycle == 1){
-            value = getch();
-            if(value == 27){
-                // EXIT
-                cycle = 0;
-                gameStatus = 0;
-            }else if(value == 13){
-                // ENTER
-                system("cls");
-                system("COLOR 20");
-                // Caricamento partita 
-                loading(); 
-                // Generazione del deck
-                deckGeneration();
-                // Playground first rendering
-                firstRendering(); 
-                cycle = 0;
-            }
-        }
-        
-    } 
-    hidecursor(true); 
 }
 
 // Messaggio di errore

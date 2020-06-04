@@ -38,7 +38,6 @@ void deckGeneration(){
         index = 2;
         offset += 12;
     } 
-
     // DEBUG - EASY WIN
     //deck.valore[0] = 13; 
     //deck.valore[1] = 13; 
@@ -69,7 +68,6 @@ void deckGeneration(){
         deck.colore[rnd1] = deck.colore[rnd2];
         deck.colore[rnd2] = tempColore;
     }
-    
     // DEBUG: PRINT DATASET   
     /*
     for(int k = 0; k < 52; k++){

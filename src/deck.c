@@ -6,12 +6,12 @@ void deckGeneration(){
     int y, i, j, swap;
     // Variabili per la generazione delle carte
     int index = 2, offset = 0;
-    // Variabili per la generazione di numeri random
+    // Variabili - numeri random
     int rnd1, rnd2;
     // (SWAP) - Variabili temporanee per le carte 
     int tempValore; 
     char tempSeme, tempColore;
-    // TODO: DA VEDERE!
+    // ARRAY semi
     char semi[4] = {3,5,4,6};
     // Generazione Assi
     for(y = 0; y < 4; y++){

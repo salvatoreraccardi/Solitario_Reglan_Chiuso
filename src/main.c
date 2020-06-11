@@ -94,7 +94,7 @@ int main() {
     loading('f'); 
     // Generazione del mazzo
     deckGeneration();
-    // Il primo caricamento del campo di gioco
+    // Il primo caricamento - campo da gioco
     firstRendering();  
     // Ciclo per il controllo della partita
     while(gameStatus == 1){
